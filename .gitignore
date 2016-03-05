@@ -1,0 +1,26 @@
+# Build
+build/app.js
+build/style.css
+
+#secrets
+server/twitter/twitterController.js
+
+# Logs
+logs
+*.log
+
+# Coverage directory used by tools like nyc
+.nyc_output
+coverage
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+
+# Dependency directory
+node_modules
+
+# Users Environment Variables
+.lock-wscript
+
+.idea
+
