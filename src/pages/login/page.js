@@ -15,7 +15,7 @@ export default class LoginPage extends React.Component {
       <div className={styles.content}>
         <h1 className={styles.heading}>NewsFinder</h1>
         <p className={styles.lead}>Sign up with Twitter!</p>
-        <button className={styles.signUpButton} onClick={this.signUp}>Sign up</button>
+        <a href="/request-token">Sign up!</a>
       </div>
     );
   }

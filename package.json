@@ -1,5 +1,5 @@
 {
-  "name": "newsfinder",
+  "name": "NewsFlash",
   "version": "1.0.0",
   "description": "find your news",
   "main": "server/app.js",
