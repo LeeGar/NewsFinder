@@ -1,24 +1,57 @@
-import React from 'react';
+import React, { Component, PropTypes} from 'react';
+import RaisedButton from 'material-ui/lib/raised-button';
 
-class Search extends React.Component {
-  constructor(props){
+
+export default class Search extends Component {
+  constructor(props) {
     super(props);
+    this.handleSearching = this.handleSearching.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  searching () {
-    this.props.onUserInput(this.refs.input.value);
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.value !== this.props.value) {
+      this.setInputValue(nextProps.value)
+    }
+  }
+
+  getInputValue () {
+    return this.refs.input.value
+  }
+
+  setInputValue(value) {
+    this.refs.input.value = val
+  }
+
+  //handle return or enter key press
+  handleSearching(key) {
+    if (key.keyCode === 13) {
+      this.handleSubmit()
+    }
+  }
+
+  //handle submit click
+  handleSubmit() {
+    this.props.onChange(this.getInputValue())
   }
 
   render () {
-    
-    return(
-      <div className="search-bar form-inline">
-        <input className="form" type="text" 
-        onChange={(event) => this.searching(event.target.value)} ref="input"/>
-
-      </div> 
+    return (
+      <div>
+        <div className="search-bar form-inline">
+          <input className="form" 
+                 type="text"
+                 ref="input"
+                 defaultValue={this.props.value}
+                 onKeyUp={this.handleSearching} />
+        </div>
+      <button onClick={this.handleSubmit}> Submit </button>
+      </div>
     )
   }
 }
 
-window.Search = Search;
+Search.propTypes = {
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func.isRequired
+}
