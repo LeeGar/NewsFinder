@@ -1,21 +1,26 @@
 import React from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
+import { Link, browserHistory } from 'react-router';
+import styles from './base.scss';
 
-export default React.createClass({
-  signIn: function () {
-    $(function () {
-      $("#signintwitter").on("click", function () {
-        console.log('????')
-        window.location.href = "/request-token"
-      });
-    });
-  },
+export default class LoginPage extends React.Component {
 
-  render: function () {
+  constructor(props) {
+    super(props);
+  }
+
+  signUp() {
+    console.log('hello')
+    browserHistory.push('/request-token');
+  }
+  
+  render() {
+
     return (
-      <div classname="signin">
-        <RaisedButton label="Sign IN!"/>
+      <div className={styles.content}>
+        <h1 className={styles.heading}>NewsFlash</h1>
+        <p className={styles.lead}>Sign up with Twitter!</p>
+        <a href="/request-token">Sign up!</a>
       </div>
-  )} 
-});
-
+    );
+  }
+}

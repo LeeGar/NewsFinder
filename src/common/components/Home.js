@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./style.css";
 import { Link, browserHistory } from 'react-router';
-import Search from "../../common/components/Search.js"
+import Search from "./Search.js"
 
 
 export default class HomePage extends React.Component {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes} from 'react';
-import styles from '../base.css';
+import styles from '../base.scss';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField'
 
