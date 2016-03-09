@@ -1,9 +1,9 @@
-import path from 'path';
-import express from 'express';
-import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
-import morgan from 'morgan';
-import twitterController from './server/twitter/twitterController.js'
+const path = require('path');
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const twitterController = require('./server/twitter/twitterController.js')
 
 const webpack = require('webpack');
 const config = require('./webpack.config.dev');

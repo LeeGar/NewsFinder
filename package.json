@@ -8,7 +8,7 @@
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "dev": "NODE_ENV=development npm start",
-    "start": "node devServer.js",
+    "start": "node server.js",
     "lint": "eslint src"
   },
   "repository": {
@@ -32,19 +32,24 @@
     "body-parser": "^1.15.0",
     "cross-env": "^1.0.6",
     "css-loader": "^0.23.1",
+    "postcss-loader": "^0.6.0",
+    "postcss-nested": "^1.0.0",
     "eslint": "^1.10.3",
     "eslint-config-airbnb": "^4.0.0",
     "eslint-plugin-babel": "^3.0.0",
     "eslint-plugin-react": "^3.16.1",
     "eventsource-polyfill": "^0.9.6",
     "express": "^4.13.3",
+    "mongoose": "^4.4.6",
     "morgan": "^1.6.1",
-    "request": "^2.65.0",
     "node-sass": "^3.4.2",
+    "node-twitter-api": "^1.7.0",
+    "react-router": "^2.0.0",
     "redux-devtools": "^3.0.1",
     "redux-devtools-dock-monitor": "^1.0.1",
     "redux-devtools-log-monitor": "^1.0.2",
     "redux-logger": "^2.4.0",
+    "request": "^2.65.0",
     "rimraf": "^2.4.3",
     "sass-loader": "^3.1.2",
     "style-loader": "^0.13.0",
@@ -53,11 +58,12 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
+    "babel-polyfill": "^6.6.1",
+    "material-ui": "^0.14.4",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "^4.1.1",
-    "redux-thunk": "^1.0.3",
     "react-tap-event-plugin": "^0.2.2",
-    "material-ui": "^0.14.4"
+    "redux-thunk": "^1.0.3"
   }
 }
