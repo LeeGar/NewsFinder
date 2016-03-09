@@ -3,6 +3,11 @@ import { Link, browserHistory } from 'react-router';
 import styles from './style.css';
 
 export default class LoginPage extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   signUp() {
     console.log('hello')
     browserHistory.push('/request-token');

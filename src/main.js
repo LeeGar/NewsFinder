@@ -6,7 +6,7 @@ import { Router, browserHistory } from 'react-router';
 //import { Provider } from 'react-redux';
 //import { createStore } from 'redux';
 
-import Routes from './common/components/Routes';
+import Routes from './routes';
 //import newsFlash from './reducers/newsFlash';
 
 import './common/base.css';

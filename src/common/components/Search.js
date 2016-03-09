@@ -1,8 +1,7 @@
 import React, { Component, PropTypes} from 'react';
-import RaisedButton from 'material-ui/lib/raised-button';
+import styles from '../base.css'
 
-
-export default class Search extends Component {
+export default class Search extends React.Component {
   constructor(props) {
     super(props);
     this.handleSearching = this.handleSearching.bind(this);
@@ -38,7 +37,7 @@ export default class Search extends Component {
   render () {
     return (
       <div>
-        <div className="search-bar form-inline">
+        <div className="search-bar">
           <input className="form" 
                  type="text"
                  ref="input"
