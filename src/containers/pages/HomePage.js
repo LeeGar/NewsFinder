@@ -13,9 +13,11 @@ export default class HomePage extends React.Component {
   render() {
     return (
       <div className={styles.content}>
-        <p className={styles.titleText}>Welcome to NewsFlash</p>
-        <p className={styles.welcomeText}>Search for the latest social media news!</p>
-        <Search></Search>
+        <div className={styles.welcomeInfo}>
+          <p className={styles.titleText}>Welcome to NewsFlash</p>
+          <p className={styles.welcomeText}>Search for the latest social media news!</p>
+          <Search></Search>
+        </div>
       </div>
     );
   }

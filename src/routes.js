@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './containers/pages/App.js';
-import LoginPage from './containers/pages/LoginPage.js';
-import HomePage from './containers/pages/HomePage.js';
+import App from './containers/App.js';
+import LoginPage from './containers/LoginPage.js';
+import HomePage from './containers/HomePage.js';
 
 
 export default (

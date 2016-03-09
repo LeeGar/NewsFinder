@@ -44,9 +44,7 @@ export default class Search extends React.Component {
 
   //handle live responsiveness to searching
   handleTextFieldChange (e) {
-    this.setState({
-      textFieldValue: e.target.value
-    })
+    this.props.onUserInput(this.refs.input.value)
   }
 
   render () {
@@ -54,7 +52,7 @@ export default class Search extends React.Component {
       <div>
         <div className="search-bar">
            <TextField ref="input"
-                      onChange={this.handleTextFieldChange}
+                      onChange={(event) => this.handleTextFieldChange(event.target.value)}
                       onKeyUp={this.handleSearching} 
                       type="text"
                       defaultValue={this.props.value} />
