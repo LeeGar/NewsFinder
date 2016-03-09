@@ -1,5 +1,7 @@
 import React, { Component, PropTypes} from 'react';
-import styles from '../base.css'
+import styles from '../base.css';
+import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/lib/TextField'
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -12,6 +14,12 @@ export default class Search extends React.Component {
     if (nextProps.value !== this.props.value) {
       this.setInputValue(nextProps.value)
     }
+  }
+
+  getInitialValue () {
+    return {
+      textFieldValue: ''
+    };
   }
 
   getInputValue () {
@@ -34,17 +42,24 @@ export default class Search extends React.Component {
     this.props.onChange(this.getInputValue())
   }
 
+  //handle live responsiveness to searching
+  handleTextFieldChange (e) {
+    this.setState({
+      textFieldValue: e.target.value
+    })
+  }
+
   render () {
     return (
       <div>
         <div className="search-bar">
-          <input className="form" 
-                 type="text"
-                 ref="input"
-                 defaultValue={this.props.value}
-                 onKeyUp={this.handleSearching} />
+           <TextField ref="input"
+                      onChange={this.handleTextFieldChange}
+                      onKeyUp={this.handleSearching} 
+                      type="text"
+                      defaultValue={this.props.value} />
         </div>
-      <button onClick={this.handleSubmit}> Submit </button>
+      <RaisedButton onClick={this.handleSubmit} label="Submit" /> 
       </div>
     )
   }
