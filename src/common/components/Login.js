@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import styles from './base.scss';
+import styles from '../base.scss';
 
 export default class LoginPage extends React.Component {
 

@@ -1,11 +1,10 @@
 import React from "react";
-import styles from "./style.css";
+import styles from "../base.scss";
 import { Link, browserHistory } from 'react-router';
 import Search from "./Search.js"
 
 
 export default class HomePage extends React.Component {
-  
   constructor(props) {
     super(props)
   }

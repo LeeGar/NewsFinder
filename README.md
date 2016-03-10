@@ -18,7 +18,7 @@ npm install
 ```
 
 ```sh
-Start local express server: npm run server
+Start local express server: npm start
 ```
 
 Project path: https://github.com/LeeGar/NewsFinder

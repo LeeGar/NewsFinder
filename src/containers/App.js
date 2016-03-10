@@ -15,7 +15,7 @@ export default class App extends Component {
           <div id="main-app-title">NewsFlash</div>
           <div>
             <span><Link to="/">Home</Link></span>
-            <span><Link to="/login">Log in</Link></span>
+            <span><Link to="/request-token">Log in</Link></span>
             <span><Link to="/logout">Log out</Link></span>
           </div>
         </div>
