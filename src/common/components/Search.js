@@ -8,8 +8,8 @@ export default class Search extends React.Component {
     super(props);
     this.handleSearching = this.handleSearching.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.getInputValue = this.getInputValue.bind(this);
     this.handleTextFieldChange = this.handleTextFieldChange.bind(this);
+    this.clearFields = this.clearFields.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -18,19 +18,9 @@ export default class Search extends React.Component {
     }
   }
 
-  getInitialValue () {
-    return {
-      textFieldValue: ''
-    };
-  }
-
-  getInputValue () {
-    console.log('this refs input value: ', this.refs.input.value)
-    return this.refs.input.value
-  }
-
-  setInputValue(value) {
-    this.refs.input.value = val
+  //empty out search bar after submit call
+  clearFields () {
+    this.refs.input.refs.input.value = '';
   }
 
   //handle return or enter key press
@@ -41,16 +31,17 @@ export default class Search extends React.Component {
   }
 
   //handle submit click
-  handleSubmit() {
+  handleSubmit () {
     console.log('handlesubmit!')
     //this.props.onChange(this.getInputValue())
+    this.clearFields();
   }
 
   //handle live responsiveness to searching
   handleTextFieldChange (e) {
     console.log('e: ', e)
-    console.log('this: ', this.props)
-    this.props.onUserInput(this.refs.input.value)
+    console.log('this: ', this.refs.input.refs.input.value);
+    console.log('this 2 : ', this.refs)
   }
 
   render () {
@@ -60,8 +51,7 @@ export default class Search extends React.Component {
            <TextField ref="input"
                       onChange={(event) => this.handleTextFieldChange(event.target.value)}
                       onKeyUp={this.handleSearching} 
-                      type="text"
-                      defaultValue={this.props.value} />
+                      type="text" />
         </div>
       <RaisedButton onClick={this.handleSubmit} label="Submit" /> 
       </div>
