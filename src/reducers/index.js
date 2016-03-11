@@ -1,17 +1,23 @@
 import { combineReducers } from 'redux';
 import { routeReducer } from 'react-router-redux';
 
-import { USER_INPUT } from '../actions/actions.js';
+import { GET_DATA, RECEIVE_DATA } from '../actions/actions';
 
 export default function handleInput(state, action) {
-  console.log('REDUCERS:::: action.type: ', action.type, 'state: ', state)
-  
+  console.log('REDUCER:::: action.type: ', action.type, 'state: ', state)
+
+  return state = null;
+}
+
+export default function displayData(state, action) {
+
   return state = null;
 }
 
 
 const rootReducer = combineReducers({
   handleInput,
+  displayData,
   routing: routeReducer
 });
 

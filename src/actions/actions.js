@@ -1,28 +1,28 @@
-export const USER_INPUT = 'USER_INPUT';
-export const RECEIVE = 'RECEIVE_DATA'
+export const GET_DATA = 'GET_DATA'
+export const RECEIVE_DATA = 'RECEIVE_DATA'
 
-export const searchFor = () {
+export const searchFor = (input) => {
   console.log('searching...', this);
   return {
-    type: USER_INPUT
+    type: GET_DATA
   }
 }
 
-export const login = () {
+export const login = () => {
   console.log('user is logging in...')
   return {
 
   }
 }
 
-export const recieveData = (data) {
+export const recieveData = (data) => {
   return {
-    type: RECEIVE,
+    type: RECEIVE_DATA,
     data: data
   }
 }
 
-// export const getSearchData = () {
+// export const getSearchData = () => {
 //   return (dispatch) => {
 //     dispatch(searchFor)
 //     return fetch('/api/search', {

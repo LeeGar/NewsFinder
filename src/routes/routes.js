@@ -8,7 +8,6 @@ import HomePage from '../common/components/HomePage.js';
 import LoginPage from '../common/components/LoginPage.js';
 import LogoutPage from '../common/components/LogoutPage.js';
 
-console.log('homePage: ', HomePage);
 export default () => {
   return (
     <Router history={browserHistory}>
