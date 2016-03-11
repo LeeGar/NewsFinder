@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/actions';
 import { Link } from 'react-router';
 
+console.log('actions.searchFor: ', Actions);
 
 export default class App extends Component {
   render() {
@@ -31,11 +32,11 @@ export default class App extends Component {
   }
 }
 
-App.propTypes = {
-  input: PropTypes.string.isRequired,
-  actions: PropTypes.object.isRequired,
-  children: PropTypes.element.isRequired
-};
+// App.propTypes = {
+//   input: PropTypes.string.isRequired,
+//   actions: PropTypes.object.isRequired,
+//   children: PropTypes.element.isRequired
+// };
 
 function mapStateToProps(state) {
   console.log('state change.. mapping to props: ', state);

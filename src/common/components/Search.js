@@ -29,7 +29,7 @@ export default class Search extends React.Component {
     console.log('handlesubmit!', this)
     console.log('the value is : ', this.refs.input.refs.input.value);
     //this.props.onChange(this.getInputValue())
-
+    
     this.clearFields();
   }
 

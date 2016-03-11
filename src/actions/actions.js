@@ -1,15 +1,33 @@
-import { USER_INPUT } from '../constants/ActionTypes.js';
+export const USER_INPUT = 'USER_INPUT';
+export const RECEIVE = 'RECEIVE_DATA'
 
-export function searchFor () {
+export const searchFor = () {
   console.log('searching...', this);
   return {
-
+    type: USER_INPUT
   }
-};
+}
 
-export function login () {
+export const login = () {
   console.log('user is logging in...')
   return {
 
   }
-};
+}
+
+export const recieveData = (data) {
+  return {
+    type: RECEIVE,
+    data: data
+  }
+}
+
+// export const getSearchData = () {
+//   return (dispatch) => {
+//     dispatch(searchFor)
+//     return fetch('/api/search', {
+//       credentials: 'same-origin'
+//     }).then( response => response.json())
+//     .then(json => dispatch())
+//   }
+// }
