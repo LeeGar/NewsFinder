@@ -3,6 +3,8 @@ import { routeReducer } from 'react-router-redux';
 
 import { GET_DATA, RECEIVE_DATA } from '../actions/actions';
 
+
+
 export default function handleInput(state, action) {
   console.log('REDUCER:::: action.type: ', action.type, 'state: ', state)
 

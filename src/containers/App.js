@@ -41,7 +41,8 @@ export default class App extends Component {
 function mapStateToProps(state) {
   console.log('state change.. mapping to props: ', state);
   return {
-    input: state.input
+    input: state.input,
+    actions: state.actions
   };
 }
 
