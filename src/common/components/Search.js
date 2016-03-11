@@ -12,12 +12,6 @@ export default class Search extends React.Component {
     this.clearFields = this.clearFields.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.value !== this.props.value) {
-      this.setInputValue(nextProps.value)
-    }
-  }
-
   //empty out search bar after submit call
   clearFields () {
     this.refs.input.refs.input.value = '';
@@ -32,16 +26,16 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit () {
-    console.log('handlesubmit!')
+    console.log('handlesubmit!', this)
+    console.log('the value is : ', this.refs.input.refs.input.value);
     //this.props.onChange(this.getInputValue())
+
     this.clearFields();
   }
 
   //handle live responsiveness to searching
   handleTextFieldChange (e) {
-    console.log('e: ', e)
-    console.log('this: ', this.refs.input.refs.input.value);
-    console.log('this is : ', this)
+    //handleSubmit(e);
   }
 
   render () {
