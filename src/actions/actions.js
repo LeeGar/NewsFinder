@@ -1,8 +1,9 @@
 import { USER_INPUT } from '../constants/ActionTypes.js';
 
-export function search () {
-  console.log('searching...')
+export function searchFor () {
+  console.log('searching...', this);
   return {
+
   }
 };
 

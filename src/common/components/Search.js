@@ -41,7 +41,7 @@ export default class Search extends React.Component {
   handleTextFieldChange (e) {
     console.log('e: ', e)
     console.log('this: ', this.refs.input.refs.input.value);
-    console.log('this 2 : ', this.refs)
+    console.log('this is : ', this)
   }
 
   render () {
