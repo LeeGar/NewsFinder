@@ -8,6 +8,8 @@ export default class Search extends React.Component {
     super(props);
     this.handleSearching = this.handleSearching.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getInputValue = this.getInputValue.bind(this);
+    this.handleTextFieldChange = this.handleTextFieldChange.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -23,6 +25,7 @@ export default class Search extends React.Component {
   }
 
   getInputValue () {
+    console.log('this refs input value: ', this.refs.input.value)
     return this.refs.input.value
   }
 
@@ -39,11 +42,14 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit() {
-    this.props.onChange(this.getInputValue())
+    console.log('handlesubmit!')
+    //this.props.onChange(this.getInputValue())
   }
 
   //handle live responsiveness to searching
   handleTextFieldChange (e) {
+    console.log('e: ', e)
+    console.log('this: ', this.props)
     this.props.onUserInput(this.refs.input.value)
   }
 
@@ -65,5 +71,6 @@ export default class Search extends React.Component {
 
 Search.propTypes = {
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired
 }

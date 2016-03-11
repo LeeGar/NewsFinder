@@ -11,7 +11,7 @@ export default class App extends Component {
     
     return (
       <div className="mainContainer">
-      
+
         <div className="mainNav">
           <div className="titleText">NewsFlash</div>
           <div className="homeOptions">
@@ -39,6 +39,7 @@ App.propTypes = {
 };
 
 function mapStateToProps(state) {
+  console.log('state change.. mapping to props: ', state);
   return {
     input: state.input
   };
