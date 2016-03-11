@@ -1,7 +1,8 @@
 import React from "react";
 import styles from "../base.scss";
 import { Link, browserHistory } from 'react-router';
-import Search from "./Search.js"
+import Search from "./Search.js";
+import Display from "./Display.js";
 
 
 export default class HomePage extends React.Component {
@@ -16,6 +17,7 @@ export default class HomePage extends React.Component {
           <p className={styles.titleText}>Welcome to NewsFlash</p>
           <p className={styles.welcomeText}>Search for the latest social media news!</p>
           <Search></Search>
+          <Display></Display>
         </div>
       </div>
     );

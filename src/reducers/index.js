@@ -1,7 +1,10 @@
 import { combineReducers } from 'redux';
-import input from './input';
+import input from '../actions/actions.js';
 
 import { routeReducer } from 'react-router-redux';
+
+
+
 
 const rootReducer = combineReducers({
   input,

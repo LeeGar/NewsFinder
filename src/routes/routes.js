@@ -10,7 +10,7 @@ export default () => {
     <Router history={browserHistory}>
       <Route path="/" component={App}>
         <IndexRoute component={LoginPage} />
-        <Route path="home" component={HomePage} />
+        <Route path="/home" component={HomePage} />
         <Route path="/request-token" component={LoginPage} />
       </Route>
     </Router>

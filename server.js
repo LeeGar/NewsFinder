@@ -1,12 +1,13 @@
 const path = require('path');
 const express = require('express');
+const webpack = require('webpack');
+const config = require('./webpack.config.dev');
+
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const twitterController = require('./server/twitter/twitterController.js')
 
-const webpack = require('webpack');
-const config = require('./webpack.config.dev');
 
 const app = express();
 const compiler = webpack(config);
