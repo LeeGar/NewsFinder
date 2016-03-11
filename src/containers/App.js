@@ -10,15 +10,16 @@ export default class App extends Component {
     const { input, actions, children} = this.props;
     
     return (
-      <div className="main-app-container">
-        <div className="main-app-nav">
+      <div className="mainContainer">
+      
+        <div className="mainNav">
           <div className="titleText">NewsFlash</div>
           <div className="homeOptions">
-            <span className="eachOption"><Link to="/">Home</Link></span>
             <span className="eachOption"><a href="/request-token">Log in</a></span>
             <span className="eachOption"><Link to="/logout">Log out</Link></span>
           </div>
         </div>
+
           <div>
             {React.Children.map(children, (child) => {
               return React.cloneElement(child, { input, actions });

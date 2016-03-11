@@ -21,8 +21,3 @@ const DevTools = createDevTools(
 );
 
 export default DevTools;
-
-/**
- * For further information, please see:
- * https://github.com/gaearon/redux-devtools
- */

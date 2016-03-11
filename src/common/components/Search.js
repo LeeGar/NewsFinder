@@ -49,7 +49,7 @@ export default class Search extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="searchBox">
         <div className="search-bar">
            <TextField ref="input"
                       onChange={(event) => this.handleTextFieldChange(event.target.value)}

@@ -5,8 +5,8 @@ import thunk from 'redux-thunk';
 import DevTools from '../containers/DevTools';
 import { syncHistory } from 'react-router-redux';
 import { browserHistory } from 'react-router'
-// The reduxRouterMiddleware will look for route actions created by push, replace, etc.
-// and applies them to the history.
+
+//syncs react router with redux
 const reduxRouterMiddleware = syncHistory(browserHistory);
 
 /**
