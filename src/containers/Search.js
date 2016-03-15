@@ -1,6 +1,10 @@
 import React, { Component, PropTypes} from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/lib/raised-button';
-import TextField from 'material-ui/lib/TextField'
+import TextField from 'material-ui/lib/TextField';
+
+import * as Actions from '../actions/search.js';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -26,6 +30,8 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit () {
+    //call gather data action
+    this.props.actions.gatherData(this.refs.input.refs.input.value);
     this.clearFields();
   }
 
@@ -54,3 +60,21 @@ Search.propTypes = {
   onChange: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired
 }
+
+function mapStateToProps(state) {
+  return {
+    input: state.input,
+    actionState: state.actions
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Search);

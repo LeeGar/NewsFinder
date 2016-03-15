@@ -3,10 +3,13 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import * as Actions from '../actions/actions';
+import * as Actions from '../actions/search.js';
+
+
 
 export default class App extends Component {
   render() {
+console.log('am i overwriting shit: ', this.props);
     const { input, actions, children} = this.props;
     
     return (
@@ -41,7 +44,7 @@ function mapStateToProps(state) {
   console.log('state change.. mapping to props: ', state);
   return {
     input: state.input,
-    actions: state.actions
+    actionState: state.actions
   };
 }
 
