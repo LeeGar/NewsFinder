@@ -22,12 +22,12 @@ export const recieveData = (data) => {
   }
 }
 
-// export const getSearchData = () => {
-//   return (dispatch) => {
-//     dispatch(searchFor)
-//     return fetch('/api/search', {
-//       credentials: 'same-origin'
-//     }).then( response => response.json())
-//     .then(json => dispatch())
-//   }
-// }
+export const getSearchData = () => {
+  return (dispatch) => {
+    dispatch(searchFor)
+    return fetch('/api/search', {
+      credentials: 'same-origin'
+    }).then( response => response.json())
+    .then(json => dispatch())
+  }
+}

@@ -1,10 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from '../actions/actions';
 import { Link } from 'react-router';
 
-console.log('actions.searchFor: ', Actions);
+import * as Actions from '../actions/actions';
 
 export default class App extends Component {
   render() {

@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 // import Routes from './routes';
 
 import { configureStore } from './store/configureStore';
-import { Root } from './containers/Root';
+import { Root } from './containers/Root/Root.js';
 
 import './common/base.scss';
 

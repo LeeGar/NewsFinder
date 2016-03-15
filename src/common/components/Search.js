@@ -26,10 +26,6 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit () {
-    console.log('handlesubmit!', this)
-    console.log('the value is : ', this.refs.input.refs.input.value);
-    //this.props.onChange(this.getInputValue())
-
     this.clearFields();
   }
 

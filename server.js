@@ -8,9 +8,11 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const twitterController = require('./server/twitter/twitterController.js')
 
-
 const app = express();
 const compiler = webpack(config);
+
+const port = 3000;
+const dbUri = 'mongodb://localhost/news';
 
 // WEBPACK MIDDLEWARE
 app.use(require('webpack-dev-middleware')(compiler, {
@@ -26,16 +28,23 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/src'));
 
-// EXPRESS SERVER
+//Connect Mongoose ORM to server
+mongoose.connect(dbUri)
+
+// EXPRESS SERVER ROUTING
 app.get('/request-token', twitterController.getRequest);
 app.get('/return', twitterController.getAccess);
+
+// app.get('/api/search', twitterController.getData);
+// api.get('https://api.twitter.com/1.1/search/tweets.json', twitterController.handleData);
+
 
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(3000, 'localhost', (err) => {
+app.listen(port, 'localhost', (err) => {
   if (err) {
     console.log(err);
     return;

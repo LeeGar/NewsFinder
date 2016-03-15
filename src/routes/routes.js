@@ -3,7 +3,6 @@ import { Router, Route, IndexRoute } from 'react-router';
 import { browserHistory } from 'react-router';
 
 import App from '../containers/App';
-//import { HomePage, LoginPage, LogoutPage } from '../common/components';
 import HomePage from '../common/components/HomePage.js';
 import LoginPage from '../common/components/LoginPage.js';
 import LogoutPage from '../common/components/LogoutPage.js';
