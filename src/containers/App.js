@@ -31,11 +31,11 @@ export default class App extends Component {
   }
 }
 
-// App.propTypes = {
-//   input: PropTypes.string.isRequired,
-//   actions: PropTypes.object.isRequired,
-//   children: PropTypes.element.isRequired
-// };
+App.propTypes = {
+  input: PropTypes.string.isRequired,
+  actions: PropTypes.object.isRequired,
+  children: PropTypes.element.isRequired
+};
 
 function mapStateToProps(state) {
   console.log('state change.. mapping to props: ', state);
@@ -48,6 +48,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(Actions, dispatch)
+    //input: bindActionCreators(Input, dispatch)
   };
 }
 

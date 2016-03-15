@@ -11,9 +11,6 @@ const twitterController = require('./server/twitter/twitterController.js')
 const app = express();
 const compiler = webpack(config);
 
-const port = 3000;
-const dbUri = 'mongodb://localhost/news';
-
 // WEBPACK MIDDLEWARE
 app.use(require('webpack-dev-middleware')(compiler, {
   noInfo: true,
@@ -29,7 +26,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/src'));
 
 //Connect Mongoose ORM to server
-mongoose.connect(dbUri)
+mongoose.connect('mongodb://localhost/news')
 
 // EXPRESS SERVER ROUTING
 app.get('/request-token', twitterController.getRequest);
@@ -44,7 +41,7 @@ app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
-app.listen(port, 'localhost', (err) => {
+app.listen(3000, 'localhost', (err) => {
   if (err) {
     console.log(err);
     return;

@@ -1,5 +1,4 @@
 import React, { Component, PropTypes} from 'react';
-import styles from '../base.scss';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField'
 
@@ -10,6 +9,7 @@ export default class Search extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTextFieldChange = this.handleTextFieldChange.bind(this);
     this.clearFields = this.clearFields.bind(this);
+    console.log('what does THIS have in search: ', this);
   }
 
   //empty out search bar after submit call
