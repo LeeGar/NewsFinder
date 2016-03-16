@@ -6,15 +6,8 @@ import DevTools from '../containers/DevTools';
 import { syncHistory } from 'react-router-redux';
 import { browserHistory } from 'react-router'
 
-//syncs react router with redux
 const reduxRouterMiddleware = syncHistory(browserHistory);
 
-/**
- * Entirely optional, this tiny library adds some functionality to
- * your DevTools, by logging actions/state to your console. Used in
- * conjunction with your standard DevTools monitor gives you great
- * flexibility!
- */
 const logger = createLogger();
 
 const finalCreateStore = compose(

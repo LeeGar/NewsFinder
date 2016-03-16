@@ -5,11 +5,8 @@ import { Link } from 'react-router';
 
 import * as Actions from '../actions/search.js';
 
-
-
 export default class App extends Component {
   render() {
-console.log('am i overwriting shit: ', this.props);
     const { input, actions, children} = this.props;
     
     return (

@@ -26,13 +26,13 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/src'));
 
 //Connect Mongoose ORM to server
-mongoose.connect('mongodb://localhost/news')
+mongoose.connect('mongodb://localhost/news');
 
 // EXPRESS SERVER ROUTING
 app.get('/request-token', twitterController.getRequest);
 app.get('/return', twitterController.getAccess);
 
-// app.get('/api/search', twitterController.getData);
+app.post('/api/twitsearch', twitterController.getData);
 // api.get('https://api.twitter.com/1.1/search/tweets.json', twitterController.handleData);
 
 
