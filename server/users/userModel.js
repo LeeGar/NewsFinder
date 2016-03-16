@@ -6,16 +6,6 @@ var userSchema = new mongoose.Schema({
     type: String,
     required: true,
     unique: true
-  },
-  accessToken: {
-    type: String,
-    required: true,
-    unique: true
-  },
-  accessSecret: {
-    type: String,
-    required: true,
-    unique: true
   }
 });
 

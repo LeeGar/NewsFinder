@@ -42,7 +42,7 @@ export const gatherData = (input) => {
       credentials: 'same-origin'
     })
 
-    .then(response => response.json())
+    .then(res => res.json())
     .then(json => dispatch({
       type: actionTypes.GET_DATA_SUCCESS,
       json

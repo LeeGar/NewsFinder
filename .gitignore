@@ -3,7 +3,8 @@ build/app.js
 build/style.css
 
 #secrets
-server/twitter/twitterController.js
+server/twitter/twitterKeys.js
+.env
 
 # Logs
 logs

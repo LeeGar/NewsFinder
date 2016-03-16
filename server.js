@@ -33,6 +33,7 @@ app.get('/request-token', twitterController.getRequest);
 app.get('/return', twitterController.getAccess);
 
 app.post('/api/twitsearch', twitterController.getData);
+//app.get('search/tweets', twitterController.searchTweets);
 // api.get('https://api.twitter.com/1.1/search/tweets.json', twitterController.handleData);
 
 
