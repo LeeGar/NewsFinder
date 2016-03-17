@@ -29,15 +29,9 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit () {
-    //call gather data action
     this.props.actions.gatherData(this.refs.input.refs.input.value);
     this.clearFields();
   }
-
-  //handle live responsiveness to searching
-  // handleTextFieldChange (e) {
-  //   //handleSubmit(e);
-  // }
 
   render () {
     return (
@@ -76,4 +70,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Search, Display);
+)(Search);

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import styles from "../base.scss";
 import { Link, browserHistory } from 'react-router';
 
