@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import * as Actions from '../actions/search.js';
+import * as Actions from '../actions/actions.js';
 
 export default class App extends Component {
   render() {
@@ -48,7 +48,6 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(Actions, dispatch)
-    //input: bindActionCreators(Input, dispatch)
   };
 }
 

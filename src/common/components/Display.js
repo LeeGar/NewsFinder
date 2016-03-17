@@ -7,8 +7,6 @@ export default class Display extends React.Component {
     super(props);
   }
   
-
-
   render() {
     console.log('this from display: ', this);
     return (
@@ -17,5 +15,4 @@ export default class Display extends React.Component {
       </div>
     )
   }
-
 }

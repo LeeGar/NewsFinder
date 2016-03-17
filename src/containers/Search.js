@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField';
 import Display from '../common/components/Display.js';
 
-import * as Actions from '../actions/search.js';
+import * as Actions from '../actions/actions.js';
 
 export default class Search extends React.Component {
   constructor(props) {
@@ -63,8 +63,7 @@ Search.propTypes = {
 
 function mapStateToProps(state) {
   return {
-    input: state.input,
-    actionState: state.actions
+    input: state.input
   };
 }
 
@@ -77,4 +76,4 @@ function mapDispatchToProps(dispatch) {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Search);
+)(Search, Display);
