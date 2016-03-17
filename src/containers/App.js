@@ -8,10 +8,8 @@ import * as Actions from '../actions/actions.js';
 export default class App extends Component {
   render() {
     const { input, actions, children} = this.props;
-    
     return (
       <div className="mainContainer">
-
         <div className="mainNav">
           <div className="titleText">NewsFlash</div>
           <div className="homeOptions">
@@ -20,12 +18,11 @@ export default class App extends Component {
           </div>
         </div>
 
-          <div>
-            {React.Children.map(children, (child) => {
-              return React.cloneElement(child, { input, actions });
-            })}
-          </div>
-          
+        <div>
+          {React.Children.map(children, (child) => {
+            return React.cloneElement(child, { input, actions });
+          })}
+        </div>
       </div>
     );
   }
