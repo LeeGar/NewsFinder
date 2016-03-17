@@ -12,7 +12,6 @@ export default class Search extends React.Component {
     super(props);
     this.handleSearching = this.handleSearching.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleTextFieldChange = this.handleTextFieldChange.bind(this);
     this.clearFields = this.clearFields.bind(this);
   }
 
@@ -45,7 +44,6 @@ export default class Search extends React.Component {
       <div className="searchBox">
         <div className="search-bar">
            <TextField ref="input"
-                      onChange={(event) => this.handleTextFieldChange(event.target.value)}
                       onKeyUp={this.handleSearching} 
                       type="text" />
         </div>
@@ -60,7 +58,6 @@ export default class Search extends React.Component {
 
 Search.propTypes = {
   value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
   actions: PropTypes.object.isRequired
 }
 
