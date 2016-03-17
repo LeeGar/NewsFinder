@@ -59,7 +59,9 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "babel-polyfill": "^6.6.1",
+    "bluebird": "^3.3.4",
     "es6-promise": "^3.1.2",
     "isomorphic-fetch": "^2.2.1",
     "material-ui": "^0.14.4",
