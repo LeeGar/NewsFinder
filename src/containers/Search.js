@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField';
-import Display from '../common/components/Display.js';
 
+import Display from '../common/components/Display.js';
 import * as Actions from '../actions/actions.js';
 
 export default class Search extends React.Component {

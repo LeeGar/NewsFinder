@@ -92,7 +92,8 @@ var getData = function (req, res) {
   var gatherData = function(word, callback) {
     currentUser.get('search/tweets', {q: word, result_type: 'recent', count: 4}, function(err, res) {
       if (err) {
-        callback(err);
+        console.error('Error occured in twitterController gatherData ', err);
+        return err;
       }
       callback(null, res.statuses);
     });
