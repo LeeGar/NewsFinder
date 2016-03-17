@@ -8,7 +8,7 @@
     "build:webpack": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build": "npm run clean && npm run build:webpack",
     "dev": "NODE_ENV=development npm start",
-    "start": "node server.js",
+    "start": "nodemon server.js",
     "lint": "eslint src"
   },
   "repository": {
@@ -59,10 +59,13 @@
     "webpack-hot-middleware": "^2.6.0"
   },
   "dependencies": {
+    "async": "^1.5.2",
     "babel-polyfill": "^6.6.1",
+    "bluebird": "^3.3.4",
     "es6-promise": "^3.1.2",
     "isomorphic-fetch": "^2.2.1",
     "material-ui": "^0.14.4",
+    "nodemon": "^1.9.1",
     "q": "^1.4.1",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",

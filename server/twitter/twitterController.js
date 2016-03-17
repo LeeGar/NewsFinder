@@ -1,9 +1,10 @@
+var Promise = require('bluebird');
 var Twitter = require('twitter');
 var twitterAPI = require('node-twitter-api');
 var Users = require('../users/userController.js');
 var userModel = require('../users/userModel.js');
 var keys = require('./twitterKeys');
-var Q = require('q');
+var async = require('async');
 
 var currentAccessToken;
 var currentAccessSecret;
@@ -23,7 +24,6 @@ var currentUser = new Twitter({
   access_token_key: currentAccessToken,
   access_token_secret: currentAccessSecret
 });
-
 
 //after getRequest is finished, the user is redirected to callback URL
 //with the oauth_token & oauth_verifier specified in the URL
@@ -59,6 +59,8 @@ var getAccess = function (req, res) {
           access_token_key: accessToken,
           access_token_secret: accessTokenSecret
       })
+
+
       // userModel.findOne({accessToken: info.accessToken})
       //   .then(function (found) {
       //     if (found) {
@@ -78,50 +80,33 @@ var getAccess = function (req, res) {
   });
 };
 
+
+
 var getData = function (req, res) {
   var searchInfo = req.body.input.split(' ');
 
-  for (var i=0; i < searchInfo.length; i++) {
+  for (var i = 0; i < searchInfo.length; i++) {
     searchInfo[i] = searchInfo[i].replace(/[^A-Za-z0-9]/g, '');
   };
 
-  var searchAllWords = function (array) {
-    
-    for (var i=0; i < searchInfo.length; i++) {
-      currentUser.get('search/tweets', {q: searchInfo[i], result_type: 'recent', count: 4}, 
-        function (err, tweets, resp) {
-          if (err) {
-            console.error('Error retreiving tweets');
-            res.statusCode = 404;
-            res.send(err);
-          }
-          results.push(tweets.statuses);
-       })
-    };
-    console.log('Done gathering tweets: ', results);
-    return results
+  var gatherData = function(word, callback) {
+    currentUser.get('search/tweets', {q: word, result_type: 'recent', count: 4}, function(err, res) {
+      if (err) {
+        console.error('Error occured in twitterController gatherData ', err);
+        return err;
+      }
+      callback(null, res.statuses);
+    });
   };
 
-  Q.allSettled(searchAllWords(searchInfo))
-  .then(function (data) {
-    console.log('success!: ', data);
-    res.json(data);
-
-  }).catch(function (err) {
-    console.error('Error occured retrieving tweets in Q')
-    res.statusCode = 404;
-    res.send(err);
-  })
-
-  //currentUser.get('search/tweets', {q: '' })
-  //send API req call to req Query URI : https://api.twitter.com/1.1/search/tweets.json
-
+  async.map(searchInfo, gatherData, function(err, results) {
+    if (err) {
+      console.error(err);
+      return res.json(err);
+    }
+    return res.json(results);
+  });
 };
-
-// var searchTweets = function (req, res) {
-
-// };
-
 
 
 module.exports = {
