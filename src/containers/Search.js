@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField';
+import Display from '../common/components/Display.js';
 
 import * as Actions from '../actions/search.js';
 
@@ -29,16 +30,15 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit () {
-    console.log('this: ', this);
     //call gather data action
     this.props.actions.gatherData(this.refs.input.refs.input.value);
     this.clearFields();
   }
 
   //handle live responsiveness to searching
-  handleTextFieldChange (e) {
-    //handleSubmit(e);
-  }
+  // handleTextFieldChange (e) {
+  //   //handleSubmit(e);
+  // }
 
   render () {
     return (
@@ -49,7 +49,10 @@ export default class Search extends React.Component {
                       onKeyUp={this.handleSearching} 
                       type="text" />
         </div>
-      <RaisedButton onClick={this.handleSubmit} label="Submit" /> 
+      <RaisedButton onClick={this.handleSubmit} label="Submit" />
+        <div className="display">
+          <Display />
+        </div>
       </div>
     )
   }

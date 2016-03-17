@@ -84,53 +84,28 @@ var getAccess = function (req, res) {
 
 var getData = function (req, res) {
   var searchInfo = req.body.input.split(' ');
-  var results = [];
 
   for (var i = 0; i < searchInfo.length; i++) {
     searchInfo[i] = searchInfo[i].replace(/[^A-Za-z0-9]/g, '');
   };
 
   var gatherData = function(word, callback) {
-    console.log('in gather', word);
     currentUser.get('search/tweets', {q: word, result_type: 'recent', count: 4}, function(err, res) {
       if (err) {
         callback(err);
       }
-      callback(null, res);
+      callback(null, res.statuses);
     });
   };
-  // async.each(searchInfo, gatherData, function(err) {
-  //   if (err) {
-  //     console.log('there was an error', err)
-  //     return res.json({error: err});
-  //   }
-  //   console.log('here are the results111', results);
-  //   return res.json(results);
-  // });
+
   async.map(searchInfo, gatherData, function(err, results) {
     if (err) {
-      console.log('there was an error', err);
+      console.error(err);
       return res.json(err);
     }
-    console.log('RESULTS GATHERED: ', results);
     return res.json(results);
   });
-  // Promise.each(searchInfo, function (word) {
-    
-  //   var gatherData = new Promise(
-  //     function (resolve, reject) {
-  //       return currentUser.get('search/tweets', {q: word, result_type: 'recent', count: 4}, 
-  //         function (err, tweets, resp) {
-  //           results.push(tweets.statuses)
-  //         })
-  //   })
-
-  // }).then(function () {
-  //   console.log('ended prematurely: ', results);
-  // })
 };
-
-// var AsyncgetData = Promise.promisify(getData);
 
 
 module.exports = {

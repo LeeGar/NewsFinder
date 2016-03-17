@@ -2,8 +2,6 @@ import React from "react";
 import styles from "../base.scss";
 import { Link, browserHistory } from 'react-router';
 import Search from "../../containers/Search.js";
-//import Display from "./Display.js";
-
 
 export default class HomePage extends React.Component {
   constructor(props) {
