@@ -8,32 +8,9 @@ export const getQuery = (query) => {
   }
 }
 
-export const requestData = (data) => {
-  return {
-    type: actionTypes.GET_DATA,
-    data
-  }
-}
-
-export const receiveData = (data) => {
-  console.log('data received: ', data);
-  return {
-    type: actionTypes.GET_DATA_SUCCESS,
-    results: data,
-    receivedAt: Date.now()
-  }
-}
-
-export const errorHandler = (error) => {
-  return {
-    type: actionTypes.GET_DATA_FAILURE,
-    results: error
-  }
-}
-
 export const gatherData = (input) => {
   return (dispatch) => {
-    dispatch(requestData)
+    dispatch(getQuery(input))
 
     return fetch('/api/twitsearch', {
       method: 'post',
@@ -44,10 +21,28 @@ export const gatherData = (input) => {
       body: JSON.stringify({input: input}),
       credentials: 'same-origin'
     }).then(res => res.json())
-    .then(json => dispatch(receiveData(json)))
+    .then(json => dispatch(receiveData(input, json)))
     .catch(err => dispatch(errorHandler(err)))
   }
 }
+
+export const receiveData = (query, data) => {
+  console.log('data received: ', data);
+  return {
+    type: actionTypes.GET_DATA_SUCCESS,
+    query: query,
+    results: data,
+    receivedAt: Date.now()
+  }
+}
+
+export const errorHandler = (err) => {
+  return {
+    type: actionTypes.GET_DATA_FAILURE,
+    err
+  }
+}
+
 
 
 

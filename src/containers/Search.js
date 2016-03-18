@@ -29,7 +29,7 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit () {
-    this.props.dispatch(Actions.getQuery(this.refs.input.refs.input.value));
+    this.props.actions.getQuery(this.refs.input.refs.input.value);
     this.clearFields();
   }
 

@@ -4,7 +4,7 @@ const DEFAULT_STATE = {
   searching: false,
   results: []
 }
-export const targetStory = (state = '', action) => {
+export const targetStory = (state = 'default', action) => {
   console.log('target story state: ', state);
   switch(action.type) {
     case actionTypes.GET_QUERY:
@@ -15,12 +15,13 @@ export const targetStory = (state = '', action) => {
 }
 
 export const defaultData = (state = {}, action) => {
+  console.log('defaultData REDUCER is getting called: ', 'state: ', state, 'action: ', action)
     switch (action.type) {
       case actionTypes.GET_DATA_SUCCESS:
       case actionTypes.GET_DATA_FAILURE:
-      case actionTypes.GET_DATA_DEFAULT:
+      case actionTypes.GET_QUERY:
         return Object.assign({}, state, {
-          [action.type]: getData(state = {}, action)
+          [action.query]: getData(action.query, action)
         })
       default:
         return state
@@ -28,8 +29,9 @@ export const defaultData = (state = {}, action) => {
 }
 
 export const getData = (state = DEFAULT_STATE, action) => {
+  console.log('getData REDUCER is getting called: ', 'state: ', state, 'action: ', action)
   switch (action.type) {
-      case actionTypes.GET_DATA:
+      case actionTypes.GET_QUERY:
         return Object.assign({}, state, {
           searching: true
       })
