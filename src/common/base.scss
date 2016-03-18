@@ -58,6 +58,39 @@ h1 {
   font-size: 3vw;
 }
 
+.messageList {
+  width: 65%;
+}
+
+.nameInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 50%
+
+}
+
+.name {
+  font-size: 17px;
+  font-weight: bold;
+}
+
+.username {
+  
+}
+
+.text {
+  word-wrap: normal
+}
+
+.location {
+  
+}
+
+.createdAt {
+  
+}
+
 :global(#container) {
   width: 100%;
 

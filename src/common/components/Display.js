@@ -9,14 +9,18 @@ export default class Display extends Component {
     return (
       <div className="innerDisplay">
         <h1> { query } </h1>
-        <ul>
+        <ul className="messageList">
           {results.map((result, i) =>
             <li key={i}>
-            <div className="name">{result.name}</div>
-            <div className="username">{result.username}</div>
-            <div className="text">{result.text}</div>
-            <div className="location">{result.location}</div>
-            <div className="createdAt">{result.createdAt}</div>
+            <div className="fullMessage">
+              <div className="nameInfo">
+                <div className="name">{result.name}</div>
+                <div className="username">{result.username}</div>
+              </div>
+              <div className="text">{result.text}</div>
+              <div className="location">{result.location}</div>
+              <div className="createdAt">{result.createdAt}</div>
+            </div>
             <p></p>
             </li>
           )}
