@@ -1,9 +1,17 @@
 import * as actionTypes from '../actionTypes/actionTypes.js';
 import 'whatwg-fetch';
 
-export const requestData = () => {
+export const getQuery = (query) => {
   return {
-    type: actionTypes.GET_DATA
+    type: actionTypes.GET_QUERY,
+    query
+  }
+}
+
+export const requestData = (data) => {
+  return {
+    type: actionTypes.GET_DATA,
+    data
   }
 }
 

@@ -29,14 +29,15 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit () {
-    this.props.actions.gatherData(this.refs.input.refs.input.value);
+    this.props.dispatch(Actions.getQuery(this.refs.input.refs.input.value));
     this.clearFields();
   }
 
   render () {
     console.log('this: ', this);
 
-    const { selectedPost, results, searching } = this.props
+    const { query, results, searching } = this.props
+    
     const noSearch = results === undefined
 
     return (
@@ -64,11 +65,11 @@ export default class Search extends React.Component {
 }
 
 Search.propTypes = {
-  actions: PropTypes.object.isRequired,
-  results: PropTypes.array.isRequired,
-  searching: PropTypes.bool.isRequired,
-  selectedPost: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired,
+  actions: PropTypes.object,
+  results: PropTypes.array,
+  searching: PropTypes.bool,
+  query: PropTypes.string,
+  dispatch: PropTypes.func,
   lastUpdated: PropTypes.number
 }
 

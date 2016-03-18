@@ -29,7 +29,7 @@ export default class App extends Component {
 }
 
 App.propTypes = {
-  input: PropTypes.string.isRequired,
+  input: PropTypes.string,
   actions: PropTypes.object.isRequired,
   children: PropTypes.element.isRequired
 };
