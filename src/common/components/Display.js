@@ -4,17 +4,29 @@ import { Link, browserHistory } from 'react-router';
 
 export default class Display extends Component {
   render() {
-    console.log('this from display: ', this);
+    const { query, results } = this.props
+    console.log('value: ', 'results: ', results);
     return (
-      <ul>
-        {this.props.results.map((result, i) =>
-          <li key={i}>{result.title}</li>
-        )}
-      </ul>
+      <div className="innerDisplay">
+        <h1> { query } </h1>
+        <ul>
+          {results.map((result, i) =>
+            <li key={i}>
+            <div className="name">{result.name}</div>
+            <div className="username">{result.username}</div>
+            <div className="text">{result.text}</div>
+            <div className="location">{result.location}</div>
+            <div className="createdAt">{result.createdAt}</div>
+            <p></p>
+            </li>
+          )}
+        </ul>
+      </div>
     )
   }
 }
 
 Display.propTypes = {
-  results: PropTypes.array.isRequired
+  results: PropTypes.array.isRequired,
+  value: PropTypes.string
 }

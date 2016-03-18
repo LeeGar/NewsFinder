@@ -21,7 +21,7 @@ export default class Search extends React.Component {
   }
 
   //handle return or enter key press
-  handleSearching(key) {
+  handleSearching (key) {
     if (key.keyCode === 13) {
       this.handleSubmit()
     }
@@ -29,17 +29,13 @@ export default class Search extends React.Component {
 
   //handle submit click
   handleSubmit () {
-    this.props.actions.getQuery(this.refs.input.refs.input.value);
+    this.props.actions.gatherData(this.refs.input.refs.input.value);
     this.clearFields();
   }
 
   render () {
-    console.log('this: ', this);
-
-    const { query, results, searching } = this.props
-    
-    const noSearch = results === undefined
-
+    const { targetStory, query, stories, searching, results } = this.props
+    const noSearch = results.length===0
     return (
       <div className="searchBox">
         <div className="search-bar">
@@ -47,15 +43,13 @@ export default class Search extends React.Component {
                       onKeyUp={this.handleSearching} 
                       type="text" />
         </div>
-      <RaisedButton onClick={this.handleSubmit} label="Submit" />
+        <RaisedButton onClick={this.handleSubmit} label="Submit" />
         
         <div className="display">
-          {
-            noSearch ? <h2> Search me </h2> 
-            : <div>
-                <Display results={results} />
-              </div>
-
+          {noSearch ? <h3>Are you logged in?</h3> :
+           <div>
+              <Display results={results} query={query} />
+            </div>
           }
         </div>
       
@@ -67,16 +61,19 @@ export default class Search extends React.Component {
 Search.propTypes = {
   actions: PropTypes.object,
   results: PropTypes.array,
-  searching: PropTypes.bool,
-  query: PropTypes.string,
-  dispatch: PropTypes.func,
-  lastUpdated: PropTypes.number
+  query: PropTypes.string.isRequired,
+  receivedAt: PropTypes.number
 }
 
 function mapStateToProps(state) {
+  const { targetStory, defaultData } = state
+  const { searching, receivedAt, 
+          results: results } = defaultData[targetStory] || { results: [] }
   return {
-    input: state.input,
-    results: state.results
+    targetStory,
+    results,
+    receivedAt,
+    searching
   }
 }
 

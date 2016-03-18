@@ -4,8 +4,11 @@ const DEFAULT_STATE = {
   searching: false,
   results: []
 }
+
+/**
+  * Used to change state to target query
+**/
 export const targetStory = (state = 'default', action) => {
-  console.log('target story state: ', state);
   switch(action.type) {
     case actionTypes.GET_QUERY:
       return action.query
@@ -13,21 +16,24 @@ export const targetStory = (state = 'default', action) => {
       return state
   }
 }
-
-export const defaultData = (state = {}, action) => {
-  console.log('defaultData REDUCER is getting called: ', 'state: ', state, 'action: ', action)
+/** 
+  *Reducer that handles calling getData upon retreive action 
+**/
+export const defaultData = (state = DEFAULT_STATE, action) => {
     switch (action.type) {
       case actionTypes.GET_DATA_SUCCESS:
       case actionTypes.GET_DATA_FAILURE:
       case actionTypes.GET_QUERY:
         return Object.assign({}, state, {
-          [action.query]: getData(action.query, action)
+          [action.query]: getData(state, action)
         })
       default:
         return state
   }
 }
-
+/**
+  * Will change action to success upon reception of API data
+**/
 export const getData = (state = DEFAULT_STATE, action) => {
   console.log('getData REDUCER is getting called: ', 'state: ', state, 'action: ', action)
   switch (action.type) {

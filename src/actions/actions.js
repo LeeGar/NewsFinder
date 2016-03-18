@@ -27,7 +27,6 @@ export const gatherData = (input) => {
 }
 
 export const receiveData = (query, data) => {
-  console.log('data received: ', data);
   return {
     type: actionTypes.GET_DATA_SUCCESS,
     query: query,
