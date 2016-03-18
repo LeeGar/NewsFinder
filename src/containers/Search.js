@@ -34,8 +34,11 @@ export default class Search extends React.Component {
   }
 
   render () {
-    const { selectedPost, results, searching } = this.props
     console.log('this: ', this);
+
+    const { selectedPost, results, searching } = this.props
+    const noSearch = results === undefined
+
     return (
       <div className="searchBox">
         <div className="search-bar">
@@ -44,21 +47,29 @@ export default class Search extends React.Component {
                       type="text" />
         </div>
       <RaisedButton onClick={this.handleSubmit} label="Submit" />
+        
         <div className="display">
-          <Display results = {results} />
+          {
+            noSearch ? <h2> Search me </h2> 
+            : <div>
+                <Display results={results} />
+              </div>
+
+          }
         </div>
+      
       </div>
     )
   }
 }
 
 Search.propTypes = {
-  value: PropTypes.string.isRequired,
   actions: PropTypes.object.isRequired,
   results: PropTypes.array.isRequired,
   searching: PropTypes.bool.isRequired,
   selectedPost: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
+  dispatch: PropTypes.func.isRequired,
+  lastUpdated: PropTypes.number
 }
 
 function mapStateToProps(state) {

@@ -1,18 +1,20 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 import styles from "../base.scss";
 import { Link, browserHistory } from 'react-router';
 
-export default class Display extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-  
+export default class Display extends Component {
   render() {
     console.log('this from display: ', this);
     return (
-      <div className="display">
-      <h2> Display here </h2>
-      </div>
+      <ul>
+        {this.props.results.map((result, i) =>
+          <li key={i}>{result.title}</li>
+        )}
+      </ul>
     )
   }
+}
+
+Display.propTypes = {
+  results: PropTypes.array.isRequired
 }

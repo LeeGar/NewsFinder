@@ -109,11 +109,9 @@ var getData = function (req, res) {
         console.error('An error occured in async waterfall', err);
         return res.json(err);
       }
-      console.log('result before getting sent back', result);
       return res.json(result);
     });
 };
-
 
 module.exports = {
   getRequest: getRequest,
