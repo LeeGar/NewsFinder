@@ -17,7 +17,6 @@ var client = new twitterAPI({
   callback: keys.TWITTER_CALLBACK
 })
   
-
 var currentUser = new Twitter({
   consumerKey: keys.TWITTER_CONSUMER_KEY,
   consumerSecret: keys.TWITTER_CONSUMER_SECRET,
@@ -59,38 +58,26 @@ var getAccess = function (req, res) {
           access_token_key: accessToken,
           access_token_secret: accessTokenSecret
       })
-
-
-      // userModel.findOne({accessToken: info.accessToken})
-      //   .then(function (found) {
-      //     if (found) {
-      //       console.log('User already exists');
-      //     } else {
-      //       userModel.create(info).then(function (newUser) {
-      //         console.log('welcome new user!', newUser);
-      //       })
-      //     }
-      //   }).catch(function (err) {
-      //     console.error('Issue retrieving access to user');
-      //     req.statusCode = 404
-      //     req.send(err);
-      //   });
       res.redirect('http://localhost:3000/home')
     }
   });
 };
 
 
-
+//* getData is the handler for client submit
 var getData = function (req, res) {
+  
   var searchInfo = req.body.input.split(' ');
-
-  for (var i = 0; i < searchInfo.length; i++) {
-    searchInfo[i] = searchInfo[i].replace(/[^A-Za-z0-9]/g, '');
+  
+  var parseString = function (array, callback) {
+    array.forEach(function(word) { 
+      word = word.replace(/[^A-Za-z0-9]/g, ''); 
+    });
+    callback(null, array.join(', '));
   };
 
-  var gatherData = function(word, callback) {
-    currentUser.get('search/tweets', {q: word, result_type: 'recent', count: 4}, function(err, res) {
+  var gatherData = function (query, callback) {
+    currentUser.get('search/tweets', {q: query, result_type: 'recent', count: 10}, function(err, res) {
       if (err) {
         console.error('Error occured in twitterController gatherData ', err);
         return err;
@@ -99,13 +86,32 @@ var getData = function (req, res) {
     });
   };
 
-  async.map(searchInfo, gatherData, function(err, results) {
-    if (err) {
-      console.error(err);
-      return res.json(err);
-    }
-    return res.json(results);
-  });
+  var parseTweets = function (tweets, callback) {
+    var parsedTweets = [];
+    tweets.forEach(function (tweet) {
+      parsedTweets.push({
+        name: tweet.user.name,
+        username: tweet.user.screen_name,
+        location: tweet.user.location,
+        text: tweet.text,
+        createdAt: tweet.created_at
+      });
+    });
+    callback(null, parsedTweets);
+  };
+
+  async.waterfall([
+    async.apply(parseString, searchInfo),
+    gatherData,
+    parseTweets 
+    ], function (err, result) {
+      if (err) {
+        console.error('An error occured in async waterfall', err);
+        return res.json(err);
+      }
+      console.log('result before getting sent back', result);
+      return res.json(result);
+    });
 };
 
 

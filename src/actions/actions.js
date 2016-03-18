@@ -8,9 +8,11 @@ export const requestData = () => {
 }
 
 export const receiveData = (data) => {
+  console.log('data received: ', data);
   return {
     type: actionTypes.GET_DATA_SUCCESS,
-    results: data
+    results: data,
+    receivedAt: Date.now()
   }
 }
 

@@ -16,7 +16,7 @@ export const getData = (state = DEFAULT_STATE, action) => {
         return Object.assign({}, state, {
           searching: false,
           results: [
-          ...state.items, event(undefined, action)
+          ...state, event(undefined, action)
           ]
       })
 
@@ -24,7 +24,7 @@ export const getData = (state = DEFAULT_STATE, action) => {
         return Object.assign({}, state, {
           searching: false,
           results: [
-          ...state.items, event(undefined, action)
+          ...state, event(undefined, action)
           ]
        })
     default: return state
