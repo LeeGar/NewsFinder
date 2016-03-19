@@ -59,13 +59,18 @@ h1 {
 }
 
 .messageList {
+  padding-left: 0px;
   width: 65%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
 }
 
 .nameInfo {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  flex-flow: row wrap;
   justify-content: flex-start;
   width: 50%
 }
@@ -73,22 +78,32 @@ h1 {
 .name {
   font-size: 17px;
   font-weight: bold;
+  margin-left: 0px;
+  width: 100%;
+  padding: 0px 20px 2px 0px;
 }
 
 .username {
-  
+  font-weight: lighter;
+  font-variant: normal;
+  font-style: italic;
 }
 
 .text {
-  word-wrap: normal
+  padding: 5px 0px 5px 17px;
+  word-wrap: normal;
+  letter-spacing: 0.5px;
+  font-weight: bolder;
 }
 
 .location {
-  
+  font-family: monospace;
+  font-weight: 100;
 }
 
 .createdAt {
-  
+  font-family: monospace;
+  font-weight: 100;
 }
 
 :global(#container) {
