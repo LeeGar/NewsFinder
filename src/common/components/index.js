@@ -1,5 +1,5 @@
 import HomePage from './HomePage';
-import Search from './Search';
+import Header from './Header'
 import Display from './Display';
 
-export { HomePage, Search, Display };
+export { HomePage, Display, Header };

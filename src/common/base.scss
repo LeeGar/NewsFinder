@@ -3,10 +3,12 @@ body {
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 }
 
-* {
-  box-sizing: border-box;
+.header {
+  padding: 0px 0px 0px 0px;
+  margin-top: 0px;
+  align-text: right;
+  width: 50%;
 }
-
 .heading {
    font-family: 'Metrophobic', Arial, serif; font-weight: 400;
 }
@@ -18,6 +20,9 @@ h1 {
 }
 
 .titleText {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
   font-family: 'Metrophobic', Arial, serif; font-weight: 400;
   font-size: 60px;
   color: #FF8A80;

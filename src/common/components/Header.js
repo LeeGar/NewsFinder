@@ -7,7 +7,7 @@ import ActionHome from 'material-ui/lib/svg-icons/action/home';
 export default class Footer extends Component {
 	render () {
 		return (
-			<div className="footer">
+			<div className="header">
 			<IconButton tooltip="Made by Gar Lee"
 									tooltipPosition="bottom-center"
 									linkButton={true}

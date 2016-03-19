@@ -4,26 +4,30 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import * as Actions from '../actions/actions.js';
+import Header from '../common/components/Header.js';
 
 export default class App extends Component {
   render() {
     const { input, actions, children} = this.props;
     return (
+
       <div className="mainContainer">
-        <div className="mainNav">
-          <div className="titleText">NewsFlash</div>
+          <div className="mainNav">
+            <div className="titleText">
+              NewsFlash
+              <Header />
+            </div>
+          </div>
           <div className="homeOptions">
             <span className="eachOption"><a href="/request-token">Log in</a></span>
             <span className="eachOption"><Link to="/logout">Log out</Link></span>
           </div>
-        </div>
-
-        <div>
-          {React.Children.map(children, (child) => {
-            return React.cloneElement(child, { input, actions });
-          })}
-        </div>
-      </div>
+          <div>
+            {React.Children.map(children, (child) => {
+              return React.cloneElement(child, { input, actions });
+            })}
+          </div>
+       </div>
     );
   }
 }
