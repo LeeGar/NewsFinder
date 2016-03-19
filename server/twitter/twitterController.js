@@ -4,6 +4,7 @@ var Users = require('../users/userController.js');
 var userModel = require('../users/userModel.js');
 var keys = require('./twitterKeys');
 var async = require('async');
+var request = require('request');
 
 var currentAccessToken;
 var currentAccessSecret;
@@ -72,16 +73,28 @@ var getData = function (req, res) {
     array.forEach(function(word) { 
       word = word.replace(/[^A-Za-z0-9]/g, ''); 
     });
-    callback(null, array.join(', '));
+    callback(null, array.join(', '), array);
   };
 
-  var gatherData = function (query, callback) {
-    currentUser.get('search/tweets', {q: query, result_type: 'recent', count: 10}, function(err, res) {
+  // var gatherReddits = function (query, reddit, callback) {
+  //   var random = reddit[Math.floor(Math.random() * reddit.length)];
+  //   console.log('reddit: ', reddit);
+
+  //   request.get(`https://www.reddit.com/r/` + reddit[0] + `.json`, {
+  //     credentials: 'include'
+  //   }).on('response', function (redditData, second) {
+  //     console.log('redditData: ', JSON.stringify(redditData));
+  //     console.log('SECOND***********************', second)
+  //   })
+  // };
+
+  var gatherTweets = function (query, reddit, callback) {
+    currentUser.get('search/tweets', {q: query, result_type: 'recent', count: 3}, function(err, res) {
       if (err) {
-        console.error('Error occured in twitterController gatherData ', err);
+        console.error('Error occured in twitterController gatherTweets ', err);
         return err;
       }
-      callback(null, res.statuses);
+      callback(null, res.statuses, reddit);
     });
   };
 
@@ -101,7 +114,8 @@ var getData = function (req, res) {
 
   async.waterfall([
     async.apply(parseString, searchInfo),
-    gatherData,
+    gatherTweets,
+    //gatherReddits,
     parseTweets 
     ], function (err, result) {
       if (err) {

@@ -70,6 +70,7 @@
     "react-redux": "^4.1.1",
     "react-tap-event-plugin": "^0.2.2",
     "redux-thunk": "^1.0.3",
+    "request": "^2.69.0",
     "twitter": "^1.2.5",
     "whatwg-fetch": "^0.11.0"
   }
