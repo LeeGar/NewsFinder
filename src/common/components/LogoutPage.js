@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import styles from '../base.scss';
 
-export default class LogoutPage extends React.Component {
+export default class LogoutPage extends Component {
   constructor(props) {
     super(props);
   }

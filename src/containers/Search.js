@@ -5,9 +5,10 @@ import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField';
 
 import Display from '../common/components/Display.js';
+import Footer from '../common/components/Footer.js';
 import * as Actions from '../actions/actions.js';
 
-export default class Search extends React.Component {
+export default class Search extends Component {
   constructor(props) {
     super(props);
     this.handleSearching = this.handleSearching.bind(this);
@@ -46,7 +47,11 @@ export default class Search extends React.Component {
         <RaisedButton onClick={this.handleSubmit} label="Submit" />
         
         <div className="display">
-          {noSearch ? <h3>Are you logged in?</h3> :
+          {noSearch ? 
+          <div>
+             <Footer />
+          </div>
+           :
            <div>
               <Display results={results} query={query} />
             </div>

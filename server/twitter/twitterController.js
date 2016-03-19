@@ -1,4 +1,3 @@
-var Promise = require('bluebird');
 var Twitter = require('twitter');
 var twitterAPI = require('node-twitter-api');
 var Users = require('../users/userController.js');

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Link, browserHistory } from 'react-router';
 import styles from '../base.scss';
 
-export default class LoginPage extends React.Component {
+export default class LoginPage extends Component {
 
   constructor(props) {
     super(props);
@@ -16,8 +16,8 @@ export default class LoginPage extends React.Component {
   render() {
 
     return (
-      <div className={styles.content}>
-        <h1 className={styles.heading}>Welcome! Log in with Twitter today!</h1>
+      <div className="content">
+        <h1 className="heading">Welcome! Log in with Twitter today!</h1>
       </div>
     );
   }
