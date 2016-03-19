@@ -65,9 +65,9 @@ h1 {
 .nameInfo {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   width: 50%
-
 }
 
 .name {
