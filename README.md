@@ -20,7 +20,8 @@ Super features: Collect recommended searches based on previous queries and displ
 - Express
 - MongoDB
   - Mongoose
-Developed using with ES6/Babel & webpack
+
+- Developed using with ES6/Babel & webpack
 
 <hr>
 ## Getting started
