@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField';
-
 import Display from '../common/components/Display.js';
 import * as Actions from '../actions/actions.js';
 
@@ -42,7 +41,8 @@ export default class Search extends Component {
           <div className="search-bar">
              <TextField ref="input"
                         onKeyUp={this.handleSearching} 
-                        type="text" />
+                        type="text" 
+                        hintText="Search here" />
           </div>
           <RaisedButton onClick={this.handleSubmit} label="Submit" />
           </div>

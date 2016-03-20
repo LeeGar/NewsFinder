@@ -35,7 +35,6 @@ export const defaultData = (state = DEFAULT_STATE, action) => {
   * Will change action to success upon reception of API data
 **/
 export const getData = (state = DEFAULT_STATE, action) => {
-  console.log('getData REDUCER is getting called: ', 'state: ', state, 'action: ', action)
   switch (action.type) {
       case actionTypes.GET_QUERY:
         return Object.assign({}, state, {
