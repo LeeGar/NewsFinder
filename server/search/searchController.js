@@ -2,8 +2,7 @@ var Twitter = require('twitter');
 var twitterAPI = require('node-twitter-api');
 var Reddit = require('nraw');
 var Users = require('../users/userController.js');
-var userModel = require('../users/userModel.js');
-var keys = require('./twitterKeys');
+//var userModel = require('../users/userModel.js');
 var moment = require('moment');
 var async = require('async');
 
@@ -13,14 +12,14 @@ var _requestToken;
 var _requestSecret;
 
 var client = new twitterAPI({
-  consumerKey: keys.TWITTER_CONSUMER_KEY,
-  consumerSecret: keys.TWITTER_CONSUMER_SECRET,
-  callback: keys.TWITTER_CALLBACK
+  consumerKey: process.env.TWITTER_CONSUMER_KEY,
+  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
+  callback: process.env.TWITTER_CALLBACK
 })
   
 var currentUser = new Twitter({
-  consumerKey: keys.TWITTER_CONSUMER_KEY,
-  consumerSecret: keys.TWITTER_CONSUMER_SECRET,
+  consumerKey: process.env.TWITTER_CONSUMER_KEY,
+  consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
   access_token_key: currentAccessToken,
   access_token_secret: currentAccessSecret
 });
@@ -56,8 +55,8 @@ var getAccess = function (req, res) {
       currentAccessSecret = accessTokenSecret
 
       currentUser = new Twitter({
-          consumer_key: keys.TWITTER_CONSUMER_KEY,
-          consumer_secret: keys.TWITTER_CONSUMER_SECRET,
+          consumer_key: process.env.TWITTER_CONSUMER_KEY,
+          consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
           access_token_key: accessToken,
           access_token_secret: accessTokenSecret
       })
