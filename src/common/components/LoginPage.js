@@ -16,9 +16,7 @@ export default class LoginPage extends Component {
   render() {
 
     return (
-      <div className="content">
-        <h1 className="heading">Welcome! Log in with Twitter today!</h1>
-      </div>
+        <h1 className={styles.heading}>Welcome! Log in with Twitter today!</h1>
     );
   }
 }

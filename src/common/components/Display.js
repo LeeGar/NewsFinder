@@ -5,7 +5,6 @@ import { Link, browserHistory } from 'react-router';
 export default class Display extends Component {
   render() {
     const { query, results } = this.props
-    console.log('value: ', 'results: ', results);
     return (
       <div className="innerDisplay">
         <h1> { query } </h1>

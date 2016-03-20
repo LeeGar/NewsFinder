@@ -118,6 +118,7 @@ var getData = function (req, res) {
   };
 
   var parseReddits = function (tweetResults, reddits, callback) {
+
     reddits.data.children.forEach(function (reddit) {
       tweetResults.push({
         name: reddit.data.author,

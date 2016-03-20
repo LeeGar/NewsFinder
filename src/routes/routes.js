@@ -15,6 +15,7 @@ export default () => {
         <Route path="/home" component={HomePage} />
         <Route path="/request-token" component={LoginPage} />
         <Route path="/logout" component={LogoutPage} />
+        <Route path="/login" component={LoginPage} />
       </Route>
     </Router>
   );
