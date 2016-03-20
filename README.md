@@ -4,7 +4,7 @@ A unique approach to finding social media posts that interest you
 
 <hr>
 
-NewsFlash: A web app that will aggregate data from reddit and twitter and display the latest news results to the user. The display will be populated by 10 of the latest results from both reddit and twitter, and the user can view the latest news depending on his input query.
+NewsFlash: A web app that will aggregate data from reddit and twitter and display the latest news results to the user. The display will be populated by the latest results from both reddit and twitter, and the user can view the latest news depending on his input query.
 
 <hr>
 
@@ -27,14 +27,14 @@ Super features: Collect recommended searches based on previous queries and displ
 ## Getting started
 
 ```sh
-npm install
+$ npm install
 ```
 
 - Ensure mongodb is active
 
 
 ```sh
-Start local express server: npm start
+Start local express server:$ npm start
 ```
 
 Project path: https://github.com/LeeGar/NewsFlash
