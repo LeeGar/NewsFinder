@@ -46,14 +46,11 @@ export default class Search extends Component {
         <RaisedButton onClick={this.handleSubmit} label="Submit" />
         
         <div className="display">
-          {noSearch ? <p></p>
-           :
+          { noSearch ? <p></p> :
            <div>
               <Display results={results} query={query} />
-            </div>
-          }
+            </div> }
         </div>
-      
       </div>
     )
   }
@@ -62,7 +59,7 @@ export default class Search extends Component {
 Search.propTypes = {
   actions: PropTypes.object,
   results: PropTypes.array,
-  query: PropTypes.string.isRequired,
+  query: PropTypes.string,
   receivedAt: PropTypes.number
 }
 

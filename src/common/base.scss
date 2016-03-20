@@ -1,5 +1,5 @@
 body {
-  margin: 0;
+  padding: 10px 15px;
   font-family: 'Metrophobic', Arial, serif;
 }
 
@@ -24,7 +24,11 @@ h1 {
 }
 
 .mainNav {
-  max-width: 100%
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  max-width: 100%;
 }
 
 .titleText {
@@ -95,6 +99,11 @@ h1 {
   flex-direction: column;
 }
 
+.eachMessage {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
 .nameInfo {
   display: flex;
   flex-direction: row;
@@ -144,6 +153,19 @@ h1 {
   font-size: 11px
 }
 
+.url {
+  font-family: "Lucida Console", Monaco, monospace;
+  font-weight: lighter;
+  font-variant: normal;
+  font-style: normal;
+  font-size: 11px;
+  color: #555;
+  text-decoration: none;
+  url:hover {
+    text-decoration: underline;
+  }
+}
+
 :global(#container) {
   width: 100%;
 
@@ -165,15 +187,6 @@ h1 {
         display: inline-block;
         font-size: 18px;
         font-weight: bold;
-
-        a {
-          color: #555;
-          text-decoration: none;
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
       }
     }
   }
@@ -181,7 +194,14 @@ h1 {
 
 @media (max-width: 500px) {
   .titleText {
-    font-size: 30px
+    font-size: 40px
+  }
+  .mainNav {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 100%;
   }
 }
 

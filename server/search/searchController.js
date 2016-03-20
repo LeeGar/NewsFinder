@@ -1,10 +1,11 @@
 var Twitter = require('twitter');
 var twitterAPI = require('node-twitter-api');
+var Reddit = require('nraw');
 var Users = require('../users/userController.js');
 var userModel = require('../users/userModel.js');
 var keys = require('./twitterKeys');
+var moment = require('moment');
 var async = require('async');
-var request = require('request');
 
 var currentAccessToken;
 var currentAccessSecret;
@@ -23,6 +24,8 @@ var currentUser = new Twitter({
   access_token_key: currentAccessToken,
   access_token_secret: currentAccessSecret
 });
+
+var redditSearcher = new Reddit('Searcher');
 
 //after getRequest is finished, the user is redirected to callback URL
 //with the oauth_token & oauth_verifier specified in the URL
@@ -63,7 +66,6 @@ var getAccess = function (req, res) {
   });
 };
 
-
 //* getData is the handler for client submit
 var getData = function (req, res) {
   
@@ -73,50 +75,82 @@ var getData = function (req, res) {
     array.forEach(function(word) { 
       word = word.replace(/[^A-Za-z0-9]/g, ''); 
     });
-    callback(null, array.join(', '), array);
+    callback(null, array.join(', '), array.join(', '));
   };
 
-  // var gatherReddits = function (query, reddit, callback) {
-  //   var random = reddit[Math.floor(Math.random() * reddit.length)];
-  //   console.log('reddit: ', reddit);
+  var gatherReddits = function (reddit, twitter, callback) {
+    var random = reddit[Math.floor(Math.random() * reddit.length)];
+    redditSearcher.search(reddit).sort('new').exec(function (redditResults) {
+      if (redditResults === undefined) {
+        console.error('Error occured in gatherReddits request');
+      }
+      callback(null, twitter, redditResults); 
+    })  
+  };
 
-  //   request.get(`https://www.reddit.com/r/` + reddit[0] + `.json`, {
-  //     credentials: 'include'
-  //   }).on('response', function (redditData, second) {
-  //     console.log('redditData: ', JSON.stringify(redditData));
-  //     console.log('SECOND***********************', second)
-  //   })
-  // };
-
-  var gatherTweets = function (query, reddit, callback) {
-    currentUser.get('search/tweets', {q: query, result_type: 'recent', count: 3}, function(err, res) {
+  var gatherTweets = function (query, reddits, callback) {
+    currentUser.get('search/tweets', {q: query, result_type: 'recent', count: 10}, function(err, res) {
       if (err) {
         console.error('Error occured in twitterController gatherTweets ', err);
         return err;
       }
-      callback(null, res.statuses, reddit);
+      callback(null, res.statuses, reddits);
     });
   };
 
-  var parseTweets = function (tweets, callback) {
+  var parseTweets = function (tweets, reddits, callback) {
     var parsedTweets = [];
     tweets.forEach(function (tweet) {
+      var urlProvided = ' ';
+      if (tweet.entities.urls[0]) {
+        urlProvided = tweet.entities.urls[0].url
+      }
       parsedTweets.push({
         name: tweet.user.name,
         username: tweet.user.screen_name,
-        location: tweet.user.location,
+        location: 'From Twitter '+tweet.user.location,
         text: tweet.text,
+        url: urlProvided,
         createdAt: tweet.created_at
       });
     });
-    callback(null, parsedTweets);
+    callback(null, parsedTweets, reddits);
+  };
+
+  var parseReddits = function (tweetResults, reddits, callback) {
+    reddits.data.children.forEach(function (reddit) {
+      tweetResults.push({
+        name: reddit.data.author,
+        username: 'Score: '+reddit.data.score,
+        location: 'From subreddit '+reddit.data.domain,
+        text: reddit.data.title,
+        url: reddit.data.url,
+        createdAt: moment.unix(reddit.data.created_utc)._d
+      })
+    });
+    callback(null, tweetResults);
+  };
+
+  var randomizeResults = function (results, callback) {
+    var i = 0;
+    var j = 0;
+    var z = null;
+    for (var i = results.length - 1; i > 0; i -=1) {
+      j = Math.floor(Math.random () * (i+1));
+      z = results[i];
+      results[i] = results[j];
+      results[j] = z;
+    }
+    callback(null, results);
   };
 
   async.waterfall([
     async.apply(parseString, searchInfo),
+    gatherReddits,
     gatherTweets,
-    //gatherReddits,
-    parseTweets 
+    parseTweets,
+    parseReddits,
+    randomizeResults 
     ], function (err, result) {
       if (err) {
         console.error('An error occured in async waterfall', err);

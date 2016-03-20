@@ -6,7 +6,7 @@ const config = require('./webpack.config.dev');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const twitterController = require('./server/twitter/twitterController.js')
+const searchController = require('./server/search/searchController.js')
 
 const app = express();
 const compiler = webpack(config);
@@ -29,10 +29,10 @@ app.use(express.static(__dirname + '/src'));
 mongoose.connect('mongodb://localhost/news');
 
 // EXPRESS SERVER ROUTING
-app.get('/request-token', twitterController.getRequest);
-app.get('/return', twitterController.getAccess);
+app.get('/request-token', searchController.getRequest);
+app.get('/return', searchController.getAccess);
 
-app.post('/api/twitsearch', twitterController.getData);
+app.post('/api/getstories', searchController.getData);
 
 
 app.get('*', (req, res) => {

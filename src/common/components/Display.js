@@ -11,14 +11,15 @@ export default class Display extends Component {
         <h1> { query } </h1>
         <ul className="messageList">
           {results.map((result, i) =>
-            <li key={i}>
+            <li key={i} className="eachMessage">
             <div className="fullMessage">
               <div className="nameInfo">
                 <div className="name">{result.name}</div>
                 <div className="username">{result.username}</div>
               </div>
               <div className="text">{result.text}</div>
-              <div className="location"> Location : {result.location}</div>
+              <a className="url" href={result.url} target="_blank">{result.url}</a>
+              <div className="location">{result.location}</div>
               <div className="createdAt">{result.createdAt}</div>
             </div>
             <p></p>

@@ -12,7 +12,7 @@ export const gatherData = (input) => {
   return (dispatch) => {
     dispatch(getQuery(input))
 
-    return fetch('/api/twitsearch', {
+    return fetch('/api/getstories', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
