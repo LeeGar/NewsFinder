@@ -38,19 +38,21 @@ export default class Search extends Component {
     const noSearch = results.length===0
     return (
       <div className="searchBox">
-        <div className="search-bar">
-           <TextField ref="input"
-                      onKeyUp={this.handleSearching} 
-                      type="text" />
-        </div>
-        <RaisedButton onClick={this.handleSubmit} label="Submit" />
-        
-        <div className="display">
-          { noSearch ? <p></p> :
-           <div>
+          <div className="inputsubmit">
+          <div className="search-bar">
+             <TextField ref="input"
+                        onKeyUp={this.handleSearching} 
+                        type="text" />
+          </div>
+          <RaisedButton onClick={this.handleSubmit} label="Submit" />
+          </div>
+
+          <div className="display">
+            { noSearch ? <p></p> :
+            <div>
               <Display results={results} query={query} />
             </div> }
-        </div>
+          </div>
       </div>
     )
   }

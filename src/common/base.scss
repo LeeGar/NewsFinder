@@ -1,18 +1,21 @@
 body {
   padding: 10px 15px;
+  margin: 0px 0px 0px 0px;
   font-family: 'Metrophobic', Arial, serif;
 }
 
 .header {
-  padding: 0px 0px 0px 0px;
-  margin-top: 0px;
-  align-text: right;
-  max-width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .heading {
+   padding-top: 200px;
+   font-size: 35px;
    font-family: 'Metrophobic', Arial, serif; 
    font-weight: 400;
+   text-align: center;
 }
 
 h1 {
@@ -27,7 +30,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: flex-start;
+  align-items: center;
   max-width: 100%;
 }
 
@@ -37,22 +40,27 @@ h1 {
   justify-content: space-around;
   font-family: 'Metrophobic', Arial, serif; 
   font-weight: 400;
-  font-size: 60px;
+  font-size: 80px;
   color: #FF8A80;
   letter-spacing: 3px;
   padding-left: 30px;
   text-decoration: none;
 }
 
+.headerOptions {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
 .homeOptions {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  max-width: 65%;
+  align-items: center;
+  max-width: 100%;
   font-family: 'Metrophobic', Arial, serif; 
   font-weight: 400;
-  padding: 20px 30px 30px 40px;
-  margin: 0 auto;
+  padding: 0px 0px 0px 0px;
 }
 
 .eachOption {
@@ -78,7 +86,12 @@ h1 {
 }
 
 .searchBox {
-  padding-left: 40px
+  padding-left: 0px 0px 0px 0px;
+}
+
+.inputsubmit {
+ text-align: center;
+ padding-top: 100px
 }
 
 .content {
@@ -103,6 +116,18 @@ h1 {
 .eachMessage {
   padding-top: 10px;
   padding-bottom: 10px;
+  position: relative;
+  width: 100%;
+  padding: 50px;
+  margin: 0 auto;
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 
+               inset 0 0 50px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 
+               inset 0 0 50px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 
+               inset 0 0 50px rgba(0, 0, 0, 0.1);
+  
 }
 
 .nameInfo {
@@ -132,7 +157,7 @@ h1 {
 .text {
   font-family: 'Metrophobic', Arial, serif; 
   font-weight: 400;
-  padding: 5px 0px 5px 17px;
+  padding: 15px 0px 15px 20px;
   word-wrap: normal;
   letter-spacing: 0.5px;
   font-weight: lighter;

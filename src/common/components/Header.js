@@ -14,7 +14,7 @@ export default class Footer extends Component {
 			<div className="header">
 				<a className="titleText" href="/login">NewsFlash</a>
 				 <div className="homeOptions">
-	 	 	 		<span className="Login">
+	 	 	 		<div className="headerOptions">
 						 <IconButton tooltip="Sign in with Twitter"
 												tooltipPosition="bottom-center"
 												linkButton={true}
@@ -23,8 +23,8 @@ export default class Footer extends Component {
 												icon={ <FontIcon className="muidocs-icon-custom" /> }>
 								<ActionLogin />
 						 </IconButton>
-	 				</span>
-			 	  <span className="Logout">
+	 				</div>
+			 	  <div className="headerOptions">
 						<IconButton tooltip="Sign out"
 												tooltipPosition="bottom-center"
 												linkButton={true}
@@ -33,8 +33,8 @@ export default class Footer extends Component {
 												icon={ <FontIcon className="muidocs-icon-custom" /> }>
 								<ActionExit />
 						 </IconButton>
-				 	 </span>
-				 	 <span className="GitLink">
+				 	 </div>
+				 	 <div className="headerOptions">
 							<IconButton tooltip="Made by Gar Lee"
 													tooltipPosition="bottom-center"
 													linkButton={true}
@@ -43,7 +43,7 @@ export default class Footer extends Component {
 													icon={ <FontIcon className="muidocs-icon-custom" /> }>
 									<ActionHome />
 							 </IconButton>
-						</span>
+						</div>
 				</div>
 			</div>
 		)
