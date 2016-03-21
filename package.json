@@ -1,5 +1,5 @@
 {
-  "name": "NewsFlash",
+  "name": "readcoolstuff",
   "version": "1.0.0",
   "description": "find your news",
   "main": "server.js",
@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LeeGar/NewsFinder.git"
+    "url": "git+https://github.com/LeeGar/readcoolstuff.git"
   },
   "author": "Gar Lee",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/LeeGar/NewsFinder.git/issues"
+    "url": "https://github.com/LeeGar/readcoolstuff.git/issues"
   },
-  "homepage": "https://github.com/LeeGar/NewsFinder#readme",
+  "homepage": "https://github.com/LeeGar/readcoolstuff#readme",
   "devDependencies": {
     "autoprefixer": "^6.3.1",
     "babel-core": "^6.3.15",

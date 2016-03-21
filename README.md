@@ -1,10 +1,10 @@
-# NewsFlash
+# readcoolstuff
 
 A unique approach to finding social media posts that interest you
 
 <hr>
 
-NewsFlash: A web app that will aggregate data from reddit and twitter and display the latest news results to the user. The display will be populated by the latest results from both reddit and twitter, and the user can view the latest news depending on his input query.
+readcoolstuff: A web app that will aggregate data from reddit and twitter and display the latest news results to the user. The display will be populated by the latest results from both reddit and twitter, and the user can view the latest news depending on his input query.
 
 <hr>
 
@@ -36,5 +36,6 @@ $ npm install
 ```sh
 Start local express server:$ npm start
 ```
+http://readcoolstuff.com
 
-Project path: https://github.com/LeeGar/NewsFlash
+Project path: https://github.com/LeeGar/readcoolstuff

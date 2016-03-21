@@ -12,7 +12,7 @@ export default class Footer extends Component {
 	render () {
 		return (
 			<div className="header">
-				<a className="titleText" href="/login">NewsFlash</a>
+				<a className="titleText" href="/login">readcoolstuff</a>
 				 <div className="homeOptions">
 	 	 	 		<div className="headerOptions">
 						 <IconButton tooltip="Sign in with Twitter"
