@@ -220,13 +220,15 @@ h1 {
   }
 }
 
-@media (max-width: 500px) {
+@media only screen and (max-device-width: 500px) {
   body {
     padding: 0px 0px;
   }
+
   .titleText {
-    font-size: 40px
+    font-size: 100px;
   }
+
   .mainNav {
     display: flex;
     flex-direction: column;
@@ -234,6 +236,7 @@ h1 {
     align-items: center;
     max-width: 100%;
   }
+  
   .innerDisplay {
     max-width: 100%;
     display: flex;
