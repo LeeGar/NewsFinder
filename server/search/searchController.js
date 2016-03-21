@@ -52,7 +52,6 @@ var getAccess = function (req, res) {
       console.error("Error occured in TwitterController getAccess call");
       res.send(err);
     } else {
-      //access token & secret belong to individual user -- store into user db
       currentAccessToken = accessToken
       currentAccessSecret = accessTokenSecret
 
