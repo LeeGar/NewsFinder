@@ -11,12 +11,14 @@ var currentAccessSecret;
 var _requestToken;
 var _requestSecret;
 
+//client used for Twitter OAuth 2.0
 var client = new twitterAPI({
   consumerKey: process.env.TWITTER_CONSUMER_KEY,
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
   callback: process.env.TWITTER_CALLBACK
 })
-  
+
+//User data used for fetching search results
 var currentUser = new Twitter({
   consumerKey: process.env.TWITTER_CONSUMER_KEY,
   consumerSecret: process.env.TWITTER_CONSUMER_SECRET,
@@ -67,9 +69,10 @@ var getAccess = function (req, res) {
 
 //* getData is the handler for client submit
 var getData = function (req, res) {
-  
+  //split the search query into words
   var searchInfo = req.body.input.split(' ');
   
+  //parse the array to remove any non alpha-numeric characters
   var parseString = function (array, callback) {
     array.forEach(function(word) { 
       word = word.replace(/[^A-Za-z0-9]/g, ''); 
@@ -77,8 +80,8 @@ var getData = function (req, res) {
     callback(null, array.join(', '), array.join(', '));
   };
 
+  //send API call to reddit to gather newest results
   var gatherReddits = function (reddit, twitter, callback) {
-    var random = reddit[Math.floor(Math.random() * reddit.length)];
     redditSearcher.search(reddit).sort('new').exec(function (redditResults) {
       if (redditResults === undefined) {
         console.error('Error occured in gatherReddits request');
@@ -87,6 +90,7 @@ var getData = function (req, res) {
     })  
   };
 
+  //send API call to twitter to gather newest tweet results
   var gatherTweets = function (query, reddits, callback) {
     currentUser.get('search/tweets', {q: query, result_type: 'recent', count: 10}, function(err, res) {
       if (err) {
@@ -97,6 +101,7 @@ var getData = function (req, res) {
     });
   };
 
+  //parse through tweets response, to isolate targeted material
   var parseTweets = function (tweets, reddits, callback) {
     var parsedTweets = [];
     tweets.forEach(function (tweet) {
@@ -116,8 +121,8 @@ var getData = function (req, res) {
     callback(null, parsedTweets, reddits);
   };
 
+  //parse through reddit response to isolate targeted material
   var parseReddits = function (tweetResults, reddits, callback) {
-
     reddits.data.children.forEach(function (reddit) {
       tweetResults.push({
         name: reddit.data.author,
@@ -131,6 +136,7 @@ var getData = function (req, res) {
     callback(null, tweetResults);
   };
 
+  //Randomly shuffle the array of total results to give a mix of tweets and reddits
   var randomizeResults = function (results, callback) {
     var i = 0;
     var j = 0;
@@ -144,6 +150,7 @@ var getData = function (req, res) {
     callback(null, results);
   };
 
+  //Asynchronously execute all the functions in order to generate JSON results
   async.waterfall([
     async.apply(parseString, searchInfo),
     gatherReddits,

@@ -128,7 +128,6 @@ h1 {
                inset 0 0 50px rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 
                inset 0 0 50px rgba(0, 0, 0, 0.1);
-  
 }
 
 .nameInfo {
@@ -194,32 +193,6 @@ h1 {
   }
 }
 
-:global(#container) {
-  width: 100%;
-
-  @media (min-width: 960px) {
-    width: 960px;
-    margin: 0 auto;
-  }
-
-  :global(#navigation) {
-    padding: 10px 15px;
-    background-color: #F9E957;
-
-    ul {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
-      li {
-        display: inline-block;
-        font-size: 18px;
-        font-weight: bold;
-      }
-    }
-  }
-}
-
 @media only screen and (max-device-width: 500px) {
   body {
     padding: 0px 0px;
@@ -236,7 +209,7 @@ h1 {
     align-items: center;
     max-width: 100%;
   }
-  
+
   .innerDisplay {
     max-width: 100%;
     display: flex;
