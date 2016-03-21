@@ -38,7 +38,7 @@ export default class Footer extends Component {
 							<IconButton tooltip="Made by Gar Lee"
 													tooltipPosition="bottom-center"
 													linkButton={true}
-													href="https://github.com/LeeGar/NewsFlash"
+													href="https://github.com/LeeGar/readcoolstuff"
 													secondary={true}
 													icon={ <FontIcon className="muidocs-icon-custom" /> }>
 									<ActionHome />
