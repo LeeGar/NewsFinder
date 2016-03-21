@@ -10,20 +10,17 @@ const reduxRouterMiddleware = syncHistory(browserHistory);
 
 const logger = createLogger();
 
+//Using thunk middleware & React DEV tools 
 const finalCreateStore = compose(
-  // Middleware you want to use in development:
   applyMiddleware(logger, thunk, reduxRouterMiddleware),
-  // Required! Enable Redux DevTools with the monitors you chose
   DevTools.instrument()
 )(createStore);
 
 module.exports = function configureStore(initialState) {
   const store = finalCreateStore(rootReducer, initialState);
 
-  // Required for replaying actions from devtools to work
   reduxRouterMiddleware.listenForReplays(store);
 
-  // Hot reload reducers (requires Webpack or Browserify HMR to be enabled)
   if (module.hot) {
     module.hot.accept('../reducers', () =>
       store.replaceReducer(require('../reducers'))

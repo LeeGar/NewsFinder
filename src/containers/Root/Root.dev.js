@@ -9,6 +9,7 @@ module.exports = class Root extends Component {
     return (
       <Provider store={store}>
         <div>
+          <DevTools />
           <Routes />
         </div>
       </Provider>

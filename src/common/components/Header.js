@@ -6,13 +6,13 @@ import ActionHome from 'material-ui/lib/svg-icons/action/home';
 import ActionLogin from 'material-ui/lib/svg-icons/action/face';
 import ActionExit from 'material-ui/lib/svg-icons/action/exit-to-app';
 
-import { Link } from 'react-router';
+import { Link, browserHistory } from 'react-router';
 
 export default class Footer extends Component {
 	render () {
 		return (
 			<div className="header">
-				<a className="titleText" href="/login">readcoolstuff</a>
+				<Link to={`/login`}><div className="titleText">readcoolstuff</div></Link>
 				 <div className="homeOptions">
 	 	 	 		<div className="headerOptions">
 						 <IconButton tooltip="Sign in with Twitter"
@@ -25,14 +25,15 @@ export default class Footer extends Component {
 						 </IconButton>
 	 				</div>
 			 	  <div className="headerOptions">
-						<IconButton tooltip="Sign out"
+						<Link to={`/logout`}><IconButton tooltip="Sign out"
 												tooltipPosition="bottom-center"
 												linkButton={true}
-												href="/logout"
+
 												secondary={true}
 												icon={ <FontIcon className="muidocs-icon-custom" /> }>
 								<ActionExit />
 						 </IconButton>
+						 </Link>
 				 	 </div>
 				 	 <div className="headerOptions">
 							<IconButton tooltip="Made by Gar Lee"
