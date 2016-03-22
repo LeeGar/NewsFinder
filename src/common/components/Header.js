@@ -16,32 +16,32 @@ export default class Footer extends Component {
 				 <div className="homeOptions">
 	 	 	 		<div className="headerOptions">
 						 <IconButton tooltip="Sign in with Twitter"
-												tooltipPosition="bottom-center"
-												linkButton={true}
-												href="/request-token"
-												secondary={true}
-												icon={ <FontIcon className="muidocs-icon-custom" /> }>
+						             tooltipPosition="bottom-center"
+									 		 	 linkButton={true}
+												 href="/request-token"
+								    		 secondary={true}
+									 icon={ <FontIcon className="muidocs-icon-custom" /> }>
 								<ActionLogin />
 						 </IconButton>
 	 				</div>
 			 	  <div className="headerOptions">
-						<Link to={`/logout`}><IconButton tooltip="Sign out"
-												tooltipPosition="bottom-center"
-												linkButton={true}
-
-												secondary={true}
-												icon={ <FontIcon className="muidocs-icon-custom" /> }>
+						<Link to={`/logout`}>
+							<IconButton tooltip="Sign out"
+							  	        tooltipPosition="bottom-center"
+											    linkButton={true}
+													secondary={true}
+													icon={<FontIcon className="muidocs-icon-custom"/> }>
 								<ActionExit />
 						 </IconButton>
 						 </Link>
 				 	 </div>
 				 	 <div className="headerOptions">
 							<IconButton tooltip="Made by Gar Lee"
-													tooltipPosition="bottom-center"
-													linkButton={true}
-													href="https://github.com/LeeGar/readcoolstuff"
-													secondary={true}
-													icon={ <FontIcon className="muidocs-icon-custom" /> }>
+										tooltipPosition="bottom-center"
+										linkButton={true}
+										href="https://github.com/LeeGar/readcoolstuff"
+										secondary={true}
+										icon={ <FontIcon className="muidocs-icon-custom" /> }>
 									<ActionHome />
 							 </IconButton>
 						</div>
