@@ -38,4 +38,8 @@ Start local express server:$ npm start
 ```
 http://readcoolstuff.com
 
+Check out project organizer at: https://waffle.io/LeeGar/readcoolstuff
+
 Project path: https://github.com/LeeGar/readcoolstuff
+
+Thanks for looking!
