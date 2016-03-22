@@ -12,7 +12,7 @@ export default class Footer extends Component {
   render () {
     return (
       <div className="header">
-        <Link to={`/login`}><div className="titleText">readcoolstuff</div></Link>
+        <Link to={`/login`} className="titleText">readcoolstuff</Link>
          <div className="homeOptions">
              <div className="headerOptions">
              <IconButton tooltip="Sign in with Twitter"
