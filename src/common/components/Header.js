@@ -17,9 +17,9 @@ export default class Footer extends Component {
 	 	 	 		<div className="headerOptions">
 						 <IconButton tooltip="Sign in with Twitter"
 						             tooltipPosition="bottom-center"
-									 linkButton={true}
-									 href="/request-token"
-								     secondary={true}
+									 		 	 linkButton={true}
+												 href="/request-token"
+								    		 secondary={true}
 									 icon={ <FontIcon className="muidocs-icon-custom" /> }>
 								<ActionLogin />
 						 </IconButton>
@@ -28,9 +28,9 @@ export default class Footer extends Component {
 						<Link to={`/logout`}>
 							<IconButton tooltip="Sign out"
 							  	        tooltipPosition="bottom-center"
-									    linkButton={true}
-										secondary={true}
-										icon={<FontIcon className="muidocs-icon-custom"/> }>
+											    linkButton={true}
+													secondary={true}
+													icon={<FontIcon className="muidocs-icon-custom"/> }>
 								<ActionExit />
 						 </IconButton>
 						 </Link>

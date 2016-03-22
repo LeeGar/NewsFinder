@@ -68,40 +68,56 @@ var getAccess = function (req, res) {
 
 //* getData is the handler for client submit
 var getData = function (req, res) {
+
   //split the search query into words
   var searchInfo = req.body.input.split(' ');
-  
   //parse the array to remove any non alpha-numeric characters
-  var parseString = function (array, callback) {
-    array.forEach(function(word) { 
+  var parseString = function (searchInfo, callback) {
+    searchInfo.forEach(function(word) { 
       word = word.replace(/[^A-Za-z0-9]/g, ''); 
     });
-    callback(null, array.join(', '), array.join(', '));
   };
+  parseString(searchInfo);
 
   //send API call to reddit to gather newest results
-  var gatherReddits = function (reddit, twitter, callback) {
-    redditSearcher.search(reddit).sort('new').exec(function (redditResults) {
+  var gatherReddits = function (reddit, callback) {
+    redditSearcher.search(reddit.join(', ')).sort('new').exec(function (redditResults) {
       if (redditResults === undefined) {
         console.error('Error occured in gatherReddits request');
       }
-      callback(null, twitter, redditResults); 
+      callback(null, redditResults); 
     })  
   };
 
+  //parse through reddit response to isolate targeted material
+  var parseReddits = function (reddits, callback) {
+    var parsedReddits = [];
+    reddits.data.children.forEach(function (reddit) {
+      parsedReddits.push({
+        name: reddit.data.author,
+        username: 'Score: '+reddit.data.score,
+        location: 'From subreddit '+reddit.data.domain,
+        text: reddit.data.title,
+        url: reddit.data.url,
+        createdAt: moment.unix(reddit.data.created_utc)._d
+      })
+    });
+    callback(null, parsedReddits);
+  };
+
   //send API call to twitter to gather newest tweet results
-  var gatherTweets = function (query, reddits, callback) {
-    currentUser.get('search/tweets', {q: query, result_type: 'recent', count: 10}, function(err, res) {
+  var gatherTweets = function (query, callback) {
+    currentUser.get('search/tweets', {q: query.join(', '), result_type: 'recent', count: 10}, function(err, res) {
       if (err) {
         console.error('Error occured in twitterController gatherTweets ', err);
         return err;
       }
-      callback(null, res.statuses, reddits);
+      callback(null, res.statuses);
     });
   };
 
   //parse through tweets response, to isolate targeted material
-  var parseTweets = function (tweets, reddits, callback) {
+  var parseTweets = function (tweets, callback) {
     var parsedTweets = [];
     tweets.forEach(function (tweet) {
       var urlProvided = ' ';
@@ -117,22 +133,7 @@ var getData = function (req, res) {
         createdAt: tweet.created_at
       });
     });
-    callback(null, parsedTweets, reddits);
-  };
-
-  //parse through reddit response to isolate targeted material
-  var parseReddits = function (tweetResults, reddits, callback) {
-    reddits.data.children.forEach(function (reddit) {
-      tweetResults.push({
-        name: reddit.data.author,
-        username: 'Score: '+reddit.data.score,
-        location: 'From subreddit '+reddit.data.domain,
-        text: reddit.data.title,
-        url: reddit.data.url,
-        createdAt: moment.unix(reddit.data.created_utc)._d
-      })
-    });
-    callback(null, tweetResults);
+    callback(null, parsedTweets);
   };
 
   //Randomly shuffle the array of total results to give a mix of tweets and reddits
@@ -149,21 +150,67 @@ var getData = function (req, res) {
     callback(null, results);
   };
 
-  //Asynchronously execute all the functions in order to generate JSON results
-  async.waterfall([
-    async.apply(parseString, searchInfo),
-    gatherReddits,
-    gatherTweets,
-    parseTweets,
-    parseReddits,
-    randomizeResults 
-    ], function (err, result) {
+  var gatherParsedReddits = function (searchInfo, callback) {
+    async.waterfall([
+      async.apply(gatherReddits, searchInfo),
+      parseReddits
+      ], function (err, redditResults) {
+        if (err) {
+          console.error("Error retreiving reddit results");
+          return res.send(err);
+        }
+        callback(null, redditResults);
+      });  
+  };
+
+  var gatherParsedTweets = function (searchInfo, callback) {
+    async.waterfall([
+      async.apply(gatherTweets, searchInfo),
+      parseTweets
+      ], function (err, tweetResults) {
+        if (err) {
+          console.error("Error retreiving twitter results");
+          return res.send(err);
+        }
+        callback(null, tweetResults);
+      });
+  };
+
+  async.parallel([
+    function (callback) {
+      gatherParsedTweets(searchInfo, callback)
+    },
+    function (callback) {
+      gatherParsedReddits(searchInfo, callback)
+    }
+    ], function (err, results) {
       if (err) {
-        console.error('An error occured in async waterfall', err);
-        return res.json(err);
+        console.error('An error occured in async parallel ', err);
       }
-      return res.json(result);
+      async.applyEach([randomizeResults], results, function (err, data) {
+        console.log('data: ', data)
+        res.json(data);
+      })
     });
+
+
+
+  //Asynchronously execute all the functions in order to generate JSON results
+  // async.waterfall([
+  //   async.apply(parseString, searchInfo),
+  //   gatherReddits,
+  //   gatherTweets,
+  //   parseTweets,
+  //   parseReddits,
+  //   randomizeResults 
+  //   ], function (err, result) {
+  //     if (err) {
+  //       console.error('An error occured in async waterfall', err);
+  //       return res.json(err);
+  //     }
+  //     return res.json(result);
+  //   });
+
 };
 
 module.exports = {
