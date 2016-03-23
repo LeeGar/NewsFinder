@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField';
 import Display from '../common/components/Display.js';
+import Loading from '../common/components/Loading.js';
 import * as Actions from '../actions/actions.js';
 
 export default class Search extends Component {
@@ -35,6 +36,7 @@ export default class Search extends Component {
   render () {
     const { targetStory, query, stories, searching, results } = this.props
     const noSearch = results.length===0
+    console.log('searching: ', searching);
     return (
       <div className="searchBox">
           <div className="inputsubmit">
@@ -48,10 +50,12 @@ export default class Search extends Component {
           </div>
 
           <div className="display">
-            { noSearch ? <p></p> :
-            <div>
-              <Display results={results} query={query} />
-            </div> }
+            { noSearch ? 
+                searching ? <Loading /> : <p></p>
+             :
+              <div>
+                <Display results={results} query={query} />
+              </div> }
           </div>
       </div>
     )
@@ -62,7 +66,8 @@ Search.propTypes = {
   actions: PropTypes.object,
   results: PropTypes.array,
   query: PropTypes.string,
-  receivedAt: PropTypes.number
+  receivedAt: PropTypes.number,
+  searching: PropTypes.bool.isRequired
 }
 
 function mapStateToProps(state) {

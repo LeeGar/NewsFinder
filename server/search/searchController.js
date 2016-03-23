@@ -162,18 +162,16 @@ var getData = function (req, res) {
   };
 
   //Randomly shuffle the array of total results to give a mix of tweets and reddits
-  var randomizeResults = function (results) {
-    var i = 0;
-    var j = 0;
-    var z = null;
-    for (var i = results.length - 1; i > 0; i--) {
-      j = Math.floor(Math.random() * (i+1));
-      z = results[i];
-      results[i] = results[j];
-      results[j] = z;
-    }
-    return results;
-  };
+  function shuffleArray(array) {
+      for (var i = array.length - 1; i > 0; i--) {
+          var j = Math.floor(Math.random() * (i + 1));
+          var temp = array[i];
+          array[i] = array[j];
+          array[j] = temp;
+      }
+      return array;
+  }
+
 
   async.parallel([
     function (callback) {
@@ -186,12 +184,10 @@ var getData = function (req, res) {
       if (err) {
         console.error('An error occured in async parallel ', err);
       }
-      var shuffledData = randomizeResults(results);
-      res.json(shuffledData);
-      // async.applyEach([randomizeResults], results, function (err, data) {
-      //   console.log('data: ', data)
-      //   res.json(data);
-      // })
+      results = results[0].concat(results[1]);
+      var shuffled = shuffleArray(results);
+      console.log('shuffled is: ', shuffled);
+      res.json(shuffled);
     });
 
 };
@@ -202,6 +198,4 @@ module.exports = {
   getData: getData
 }
   
-
-
 
