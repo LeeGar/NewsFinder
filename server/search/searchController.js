@@ -1,6 +1,6 @@
 var Twitter = require('twitter');
 var twitterAPI = require('node-twitter-api');
-var Reddit = require('nraw');
+var Reddit = require('./redditController.js');
 //var Users = require('../users/userController.js');
 //var userModel = require('../users/userModel.js');
 var moment = require('moment');
@@ -172,8 +172,7 @@ var getData = function (req, res) {
           array[j] = temp;
       }
       return array;
-  }
-
+  };
 
   async.parallel([
     function (callback) {
