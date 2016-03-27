@@ -237,7 +237,7 @@ h1 {
     border-bottom-color: rgba( 0, 0, 0, .6);  
 }
 
-@media only screen and (max-device-width: 500px) {
+@media only screen and (max-device-width: 600px) {
   body {
     padding: 0px 0px;
   }
@@ -259,6 +259,10 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+  }
+  .eachMessage {
+    width: 90%;
+    max-width: 90%;
   }
 }
 
