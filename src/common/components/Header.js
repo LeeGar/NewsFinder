@@ -8,22 +8,25 @@ import ActionExit from 'material-ui/lib/svg-icons/action/exit-to-app';
 
 import { Link, browserHistory } from 'react-router';
 
-export default class Footer extends Component {
+export default class Header extends Component {
   render () {
     return (
       <div className="header">
         <Link to={`/login`} className="titleText">readcoolstuff</Link>
+
          <div className="homeOptions">
+
              <div className="headerOptions">
              <IconButton tooltip="Sign in with Twitter"
                          tooltipPosition="bottom-center"
                          linkButton={true}
                          href="/request-token"
                          secondary={true}
-                   icon={ <FontIcon className="muidocs-icon-custom" /> }>
+                         icon={ <FontIcon className="muidocs-icon-custom" /> }>
                 <ActionLogin />
              </IconButton>
            </div>
+
            <div className="headerOptions">
             <Link to={`/logout`}>
               <IconButton tooltip="Sign out"
@@ -35,18 +38,22 @@ export default class Footer extends Component {
              </IconButton>
              </Link>
             </div>
+
             <div className="headerOptions">
-              <IconButton tooltip="Made by Gar Lee"
-                    tooltipPosition="bottom-center"
-                    linkButton={true}
-                    href="https://github.com/LeeGar/readcoolstuff"
-                    secondary={true}
-                    icon={ <FontIcon className="muidocs-icon-custom" /> }>
-                  <ActionHome />
-               </IconButton>
+              <button data-tooltip="Made by Gar Lee" href="https://github.com/LeeGar/readcoolstuff">
+              </button>
             </div>
+
         </div>
       </div>
     )
   }
 }
+
+            // <IconButton tooltip="Made by Gar Lee"
+            //         tooltipPosition="bottom-center"
+            //         linkButton={true}
+            //         href="https://github.com/LeeGar/readcoolstuff"
+            //         secondary={true}
+            //         iconClassName="material-icons">
+            //     </IconButton>
