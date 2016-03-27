@@ -105,15 +105,6 @@ h1 {
   align-items: center;
 }
 
-.messageList {
-  padding-left: 0px;
-  width: 65%;
-  list-style-type: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
 .loading {
   display: flex;
   flex-direction: column;
@@ -124,21 +115,22 @@ h1 {
   max-width: 20%;
   max-height: 20%;
 }
+.messageList {
+  padding-left: 0px;
+  width: 65%;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 .eachMessage {
+  width: 80%;
+  max-width: 80%;
+  word-wrap: normal;
   padding-top: 10px;
   padding-bottom: 10px;
   position: relative;
-  width: 100%;
-  padding: 50px;
-  margin: 0 auto;
-  background-color: #fff;
-  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 
-               inset 0 0 50px rgba(0, 0, 0, 0.1);
-  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), 
-               inset 0 0 50px rgba(0, 0, 0, 0.1);
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), 
-               inset 0 0 50px rgba(0, 0, 0, 0.1);
 }
 
 .nameInfo {
@@ -201,7 +193,50 @@ h1 {
   word-wrap: break-word;
 }
 
-@media only screen and (max-device-width: 500px) {
+.tool-tip{
+  color: #fff;
+  background-color: rgba( 0, 0, 0, .7);
+  text-shadow: none;
+  font-size: .8em;
+  visibility: hidden;
+  -webkit-border-radius: 7px; 
+  -moz-border-radius: 7px; 
+  -o-border-radius: 7px; 
+  border-radius: 7px; 
+  text-align: center; 
+  opacity: 0;
+  z-index: 999;
+  padding: 3px 8px; 
+  position: absolute;
+  cursor: default;
+  -webkit-transition: all 240ms ease-in-out;
+  -moz-transition: all 240ms ease-in-out;
+  -ms-transition: all 240ms ease-in-out;
+  -o-transition: all 240ms ease-in-out;
+  transition: all 240ms ease-in-out;  
+}
+
+.tool-tip.bottom{
+  top: 115%;
+  bottom: auto;
+  left: 50%;
+  margin-bottom: auto;  
+}
+
+.tool-tip.bottom:after{
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  margin-left: -7px;
+  content: ' ';
+  height: 0px;
+  width: 0px;
+  border: 6px solid transparent;
+    border-top-color: transparent;  
+    border-bottom-color: rgba( 0, 0, 0, .6);  
+}
+
+@media only screen and (max-device-width: 600px) {
   body {
     padding: 0px 0px;
   }
@@ -223,6 +258,10 @@ h1 {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
+  }
+  .eachMessage {
+    width: 90%;
+    max-width: 90%;
   }
 }
 

@@ -98,7 +98,8 @@ var getData = function (req, res) {
         location: 'From subreddit '+reddit.data.domain,
         text: reddit.data.title,
         url: reddit.data.url,
-        createdAt: moment.unix(reddit.data.created_utc)._d
+        createdAt: moment.unix(reddit.data.created_utc)._d,
+        from: 'https://goo.gl/NjcJZU'
       })
     });
     callback(null, parsedReddits);
@@ -129,7 +130,8 @@ var getData = function (req, res) {
         location: 'From Twitter '+tweet.user.location,
         text: tweet.text,
         url: urlProvided,
-        createdAt: tweet.created_at
+        createdAt: tweet.created_at,
+        from: 'http://goo.gl/O9LFsE'
       });
     });
     callback(null, parsedTweets);
@@ -186,7 +188,6 @@ var getData = function (req, res) {
       }
       results = results[0].concat(results[1]);
       var shuffled = shuffleArray(results);
-      console.log('shuffled is: ', shuffled);
       res.json(shuffled);
     });
 

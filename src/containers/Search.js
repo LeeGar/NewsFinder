@@ -4,8 +4,9 @@ import { bindActionCreators } from 'redux';
 import RaisedButton from 'material-ui/lib/raised-button';
 import TextField from 'material-ui/lib/TextField';
 import Display from '../common/components/Display.js';
-import Loading from '../common/components/Loading.js';
 import * as Actions from '../actions/actions.js';
+
+import CircularProgress from 'material-ui/lib/circular-progress';
 
 export default class Search extends Component {
   constructor(props) {
@@ -36,7 +37,6 @@ export default class Search extends Component {
   render () {
     const { targetStory, query, stories, searching, results } = this.props
     const noSearch = results.length===0
-    console.log('searching: ', searching);
     return (
       <div className="searchBox">
           <div className="inputsubmit">
@@ -51,7 +51,7 @@ export default class Search extends Component {
 
           <div className="display">
             { noSearch ? 
-                searching ? <Loading /> : <p></p>
+                searching ? <div className="loading"> <CircularProgress size={1.5} /> </div> : <p></p>
              :
               <div>
                 <Display results={results} query={query} />
@@ -67,7 +67,7 @@ Search.propTypes = {
   results: PropTypes.array,
   query: PropTypes.string,
   receivedAt: PropTypes.number,
-  searching: PropTypes.bool.isRequired
+  searching: PropTypes.bool
 }
 
 function mapStateToProps(state) {
