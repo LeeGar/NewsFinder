@@ -82,10 +82,10 @@ export default class LoginPage extends Component {
 	               <GridTile
 	                 key={tile.img}
 	                 title={tile.title}
-	                 actionIcon={<IconButton><StarBorder color="white"/></IconButton>}
+	                 actionIcon={<IconButton><StarBorder color="#FFFC00"/></IconButton>}
 	                 actionPosition="left"
 	                 titlePosition="top"
-	                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
+	                 titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.9) 0%,rgba(0,0,0,0.2) 70%,rgba(0,0,0,0) 80%)"
 	                 cols={tile.featured ? 2 : 1}
 	                 rows={tile.featured ? 2 : 1}
 	               >
@@ -99,7 +99,7 @@ export default class LoginPage extends Component {
 	        	<RaisedButton 
             label="Sign in with Twitter" 
             secondary={true} 
-            linkButton='true'
+            linkButton={true}
             href='/request-token'
             />
 	        </div>
