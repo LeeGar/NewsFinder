@@ -54,11 +54,35 @@ var getAccess = function (req, res) {
       currentAccessToken = accessToken
       currentAccessSecret = accessTokenSecret
 
+      //Set the current user as a new instantiation of Twitter, with his/her access tokens/secrets
       currentUser = new Twitter({
           consumer_key: process.env.TWITTER_CONSUMER_KEY,
           consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
           access_token_key: accessToken,
           access_token_secret: accessTokenSecret
+      })
+
+      //Ask twitter to return the currently logged-in user for his/her basic information 
+      client.verifyCredentials(accessToken, accessTokenSecret, function (error, data, response) {
+        if (error) {
+          console.error('Could not verify User Credentials', error);
+          res.statusCode = 404;
+          res.end();
+        } else {
+
+          /*Setup a new object holding all of the response's information, and check the database if the current user exists
+           * If the user does not exist, insert the new user into the database, creating him a new index using Twitter's profile id
+           * as our main source of truth
+           */
+          var userInfo = {
+            profile_id: data.id_str,
+            name: data.name,
+            screen_name: data.screen_name,
+            location: data.location,
+            pic_url: data.profile_background_image_url
+          }
+          console.log('userInfo: ', userInfo)
+        }
       })
       res.redirect('http://localhost:3000/home');
     }
