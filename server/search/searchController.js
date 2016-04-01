@@ -24,6 +24,14 @@ var currentUser = new Twitter({
   access_token_secret: currentAccessSecret
 });
 
+var userInfo = {
+  profile_id: null,
+  name: null,
+  screen_name: null,
+  location: null,
+  pic_url: null
+}
+
 var redditSearcher = new Reddit('Searcher');
 
 //after getRequest is finished, the user is redirected to callback URL
@@ -74,14 +82,14 @@ var getAccess = function (req, res) {
            * If the user does not exist, insert the new user into the database, creating him a new index using Twitter's profile id
            * as our main source of truth
            */
-          var userInfo = {
+          userInfo = {
             profile_id: data.id_str,
             name: data.name,
             screen_name: data.screen_name,
             location: data.location,
             pic_url: data.profile_background_image_url
           }
-          console.log('userInfo: ', userInfo)
+
         }
       })
       res.redirect('http://localhost:3000/home');
@@ -219,7 +227,9 @@ var getData = function (req, res) {
 module.exports = {
   getRequest: getRequest,
   getAccess: getAccess,
-  getData: getData
+  getData: getData,
+  client: client,
+  currentUser: currentUser
 }
   
 
